@@ -1,0 +1,43 @@
+p {
+    margin: 0 0 1rem 0
+}
+
+input {
+    width: 15rem;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.281)
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgba(65, 100, 163, 0.534)
+}
+
+button {
+    margin-top: 1rem;
+    background-color: rgba(100, 148, 237, 0.507);
+    border: none;
+    border-radius: .5rem;
+    padding: .5rem 
+}
+
+.right-side-container {
+    width: 30rem;
+    height: 100vh;
+    background-color: rgba(100, 148, 237, 0.507);
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid black
+}
+
+.login-container {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem
+}
