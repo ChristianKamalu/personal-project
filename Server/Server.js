@@ -1,4 +1,4 @@
-const express = require('exress');
+const express = require('express');
 require('dotenv').config();
 const massive = require('massive');
 const session = require('express-session');
@@ -23,3 +23,4 @@ app.use(session({
 
 app.post('/login', authCtrl.login)
 app.post('/register', authCtrl.register)
+app.get('/Listings', authCtrl.getListings)

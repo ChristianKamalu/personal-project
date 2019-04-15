@@ -1,1 +1,2 @@
-select * from 
+select * from "User"
+where "email" = $1

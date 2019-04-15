@@ -26,8 +26,8 @@ CREATE TABLE "Textbook_Listing" (
 CREATE TABLE "Textbook" (
 	"textbook_id" serial NOT NULL UNIQUE,
 	"ISBN" integer NOT NULL,
-	"title" varchar(50) NOT NULL,
-	"condition" varchar(200) NOT NULL,
+	"title" varchar(200) NOT NULL,
+	"condition" varchar(500) NOT NULL,
 	"price" integer NOT NULL,
 	"image" TEXT NOT NULL
 ) WITH (

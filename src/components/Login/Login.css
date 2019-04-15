@@ -2,6 +2,10 @@ p {
     margin: 0 0 1rem 0
 }
 
+h4 {
+    margin: 0
+}
+
 input {
     width: 15rem;
     border: none;
@@ -14,11 +18,12 @@ button:hover {
 }
 
 button {
-    margin-top: 1rem;
+    margin: 1rem 0;
     background-color: rgba(100, 148, 237, 0.507);
     border: none;
     border-radius: .5rem;
-    padding: .5rem 
+    padding: .5rem;
+    font-weight: 800
 }
 
 .right-side-container {
@@ -40,4 +45,28 @@ button {
     display: flex;
     flex-direction: column;
     padding: 2rem
+}
+
+.register {
+    color: rgba(0, 86, 247, 0.671);
+}
+
+.register:hover {
+    color: rgba(0, 86, 247, 0.993);
+    cursor: pointer;
+}
+
+.login {
+    padding: none;
+    margin: none;
+    color: rgba(0, 86, 247, 0.671);
+}
+
+.login:hover {
+    color: rgba(0, 86, 247, 0.993);
+    cursor: pointer;
+}
+
+.error {
+    color: red;
 }
