@@ -29,7 +29,6 @@ class Main extends Component {
     }
 
     render() {
-        console.log('this is props.user.user', this.props.user)
         return(
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <header>
@@ -50,7 +49,8 @@ class Main extends Component {
                     <div className={this.state.options ? 'user-options' : 'no-display'}>
                         {this.props.user.loggedIn ?
                         <a href='http://localhost:4000/Logout'>
-                        <div className='user-option-button'>Log Out</div>
+                        <div className='user-option-button' style={{borderBottom: '1px solid grey'}}>Log Out</div>
+                        <div className='user-option-button'>Create Listing</div>
                         </a>
                         :
                         <Link to='/Shrubs/Login'>
@@ -62,7 +62,7 @@ class Main extends Component {
                         <Link style={{textDecoration: 'none'}} to='/Shrubs'>
                             <li>HOME</li>
                         </Link>
-                        <Link style={{textDecoration: 'none'}} to={this.props.user.loggedIn ? '/Shrubs/Listings' : '/Shrubs/Login'}>
+                        <Link style={{textDecoration: 'none'}} to='/Shrubs/Listings'>
                             <li>Listings</li>
                         </Link>
                         <Link style={{textDecoration: 'none'}} to='/Shrubs/Messages'>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-// import {connect} from 'react-redux';
 import './Messages.css'
-// import Axios from 'axios';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import socketIOClient from "socket.io-client";
 
 class Messages extends Component {
@@ -9,37 +9,61 @@ class Messages extends Component {
         super(props)
         this.state = {
             endpoint: "http://192.168.2.172:4000",
-            color: 'white'
+            color: 'white',
+            messages: [],
+            message: ''
         }
     }
 
     send = () => {
         const socket = socketIOClient(this.state.endpoint);
-        socket.emit('change color', this.state.color)
+        // socket.emit('change color', this.state.color)
+        socket.emit('send message', this.state.message)
     }
 
     setColor = (color) => {
         this.setState({ color })
     }
 
-    // componentDidMount = () => {
-    //     const socket = socketIOClient(this.state.endpoint);
-    //     setInterval(this.send(), 1000)
-    //     socket.on('change color', (col) => {
-    //         document.body.style.backgroundColor = col
-    //     })
-    // }
+    componentDidMount = () => {
+        const socket = socketIOClient(this.state.endpoint);
+        setInterval(this.send(), 1000)
+        // socket.on('change color', (col) => {
+        //     document.body.style.backgroundColor = col
+        // })
+
+        socket.on('send message', (message) => {
+            console.log('message', message)
+            this.setState({
+                messages: [...this.state.messages, message],
+                message: message
+            })
+        })
+    }
 
     render() {
-
-        const socket = socketIOClient(this.state.endpoint)
-        socket.on('change color', (col) => {
-            document.body.style.backgroundColor = col
+        const messages = this.state.messages.map((message, i) => {
+            return (
+                <p key={i} className='text'>{message}</p>
+            )
         })
+        return this.props.user.loggedIn ? (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div className='message-box'>
+                    <div className='messages-container'>
+                    {messages}
+                    </div>
+                    <div className='input-button'>
+                        <input className='message-input' 
+                            placeholder='send message' 
+                            value={this.state.message} 
+                            onChange={e => this.setState({message: e.target.value})}/>
+                        <button 
+                            className='send-button' 
+                            onClick={this.send}>SEND</button>
+                    </div>
+                </div>
 
-        return (
-            <div style={{ textAlign: "center" }}>
-                
 
 
                 {/* <button onClick={() => this.send() }>Change Color</button>
@@ -51,8 +75,18 @@ class Messages extends Component {
                 <button id="red" onClick={() => this.setColor('red')}>Red</button> */}
 
             </div>
+        ) : (
+            <div>
+                Please <Link className='login-link' to='/Shrubs/Login'>log in</Link> to view messages
+            </div>
         )
     }
 }
 
-export default Messages
+const mapState = reduxState => {
+    return {
+        user: reduxState.user
+    }
+}
+
+export default connect(mapState)(Messages)

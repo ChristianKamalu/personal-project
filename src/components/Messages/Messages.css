@@ -1,0 +1,34 @@
+.message-box {
+    height: 30rem;
+    width: 15rem;
+    border: 1px solid rgba(0, 0, 0, 0.171);
+    position: relative;
+    margin: 3rem;
+}
+
+
+.messages-container {
+    width: 15rem;
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    display: none
+}
+
+.input-button {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    bottom: 0
+}
+
+.message-input {
+    width: 100%
+}
+
+.text {
+    
+}

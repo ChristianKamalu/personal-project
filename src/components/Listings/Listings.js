@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getListings} from '../../Ducks/listingsReducer';
+import {Link} from 'react-router-dom';
 import './Listings.css'
 
 class Listings extends Component {
@@ -14,13 +15,23 @@ class Listings extends Component {
         const listings = this.props.listings.listings.map((listing, i) => {
             return (
                 <div className='listing-container'>
-                    <img src={listing.image} alt='' width='150px'/>
+                    <img src={listing.image} alt='' width='150px' height='200px'/>
                 </div>
             )
         })
-        return (
-            <div className='all-listings-container'>
-                {listings}
+        return this.props.user.loggedIn ? (
+            <div className='listings-component'>
+                <div className='user-options-container'>
+                    <input className='search' placeholder='Search by "title" or "ISBN"'/>
+                    <button className='search-button'>Search</button>
+                </div>
+                <div className='all-listings-container'>
+                    {listings}
+                </div>
+            </div>
+        ) : (
+            <div>
+                Please <Link className='login-link' to='/Shrubs/Login'>log in</Link> to view listings
             </div>
         )
     }
@@ -28,7 +39,8 @@ class Listings extends Component {
 
 const mapState = reduxState => {
     return {
-        listings: reduxState.listings
+        listings: reduxState.listings,
+        user: reduxState.user
     }
 }
 

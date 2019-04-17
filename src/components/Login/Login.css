@@ -6,18 +6,18 @@ h4 {
     margin: 0
 }
 
-input {
+.login-input {
     width: 15rem;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.281)
 }
 
-button:hover {
+.login-button:hover {
     cursor: pointer;
     background-color: rgba(65, 100, 163, 0.534)
 }
 
-button {
+.login-button {
     margin: 1rem 0;
     background-color: rgba(100, 148, 237, 0.507);
     border: none;
