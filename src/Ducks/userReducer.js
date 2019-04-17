@@ -1,7 +1,12 @@
 import axios from 'axios';
 
 const initialState = {
-    user: {}
+    user: {
+        listings: [],
+        userData: {
+            firstName: ''
+        }
+    }
 }
 
 const GET_DATA = 'GET_DATA';

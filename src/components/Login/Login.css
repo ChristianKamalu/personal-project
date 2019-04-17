@@ -26,12 +26,13 @@ button {
     font-weight: 800
 }
 
-.right-side-container {
-    width: 30rem;
+.entire-container {
+    width: 100vw;
     height: 100vh;
-    background-color: rgba(100, 148, 237, 0.507);
+    background-color: rgba(100, 148, 237, 0.315);
     position: absolute;
     right: 0;
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +45,7 @@ button {
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    padding: 2rem
+    padding: 4rem
 }
 
 .register {

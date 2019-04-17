@@ -29,73 +29,61 @@ class Login extends Component {
         const {email, password} = this.state;
         const res = await Axios.post('/login', { email, password })
         console.log(res)
-        if (res.data.loggedIn) this.props.history.push('/Listings')
+        if (res.data.loggedIn) this.props.history.push('/Shrubs')
         else this.setState({error: true})
     }
 
     register = async () => {
         const {firstName, lastName, email, password} = this.state;
         const res = await Axios.post('/register', { firstName, lastName, email, password })
-        if (res.data.loggedIn) this.props.history.push('/Listings')
+        if (res.data.loggedIn) {
+
+            this.props.history.push('/Shrubs')
+        }
         else this.setState({error: true})
     }
 
     render() {
         return this.state.register ? (
-            <div>
-                <div>
-                    <div style={{backgroundImage: `url(${this.carousel})`}}></div>
-                </div>
-                <div className='right-side-container'>
-                    <div className='login-container'>
-                        <input placeholder='Johnny'onChange={e => this.setState({firstName: e.target.value})} value={this.state.firstName}  type='text'/>
-                        <p>First Name</p>
-                        <input placeholder='Appleseed' onChange={e => this.setState({lastName: e.target.value})} value={this.state.lastName} type='text'/>
-                        <p>Last Name</p>
-                        <p style={this.state.error ? {display: 'flex'} : {display: 'none'}} className='error'>Email already in use</p>
-                        <input placeholder='email' onChange={e => this.setState({email: e.target.value})} value={this.state.email} type='text'/>
-                        <p>Email</p>
-                        <input placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password} type='text'/>
-                        <p>Password</p>
-                        <button onClick={this.register}>Register</button>
-                        <p>Already registered?</p>
-                        <h4 className='login' onClick={() => this.setState({register: false, error: false})}>Back to login</h4>
-                    </div>
+            <div className='entire-container'>
+                <div className='login-container'>
+                    <input placeholder='Johnny'onChange={e => this.setState({firstName: e.target.value})} value={this.state.firstName}  type='text'/>
+                    <p>First Name</p>
+                    <input placeholder='Appleseed' onChange={e => this.setState({lastName: e.target.value})} value={this.state.lastName} type='text'/>
+                    <p>Last Name</p>
+                    <p style={this.state.error ? {display: 'flex'} : {display: 'none'}} className='error'>Email already in use</p>
+                    <input placeholder='email' onChange={e => this.setState({email: e.target.value})} value={this.state.email} type='text'/>
+                    <p>Email</p>
+                    <input placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password} type='text'/>
+                    <p>Password</p>
+                    <button onClick={this.register}>Register</button>
+                    <p>Already registered?</p>
+                    <h4 className='login' onClick={() => this.setState({register: false, error: false})}>Back to login</h4>
                 </div>
             </div>
         ) : this.state.error ? (
-            <div>
-                <div>
-                    <div style={{backgroundImage: `url(${this.carousel})`}}></div>
-                </div>
-                <div className='right-side-container'>
-                    <div className='login-container'>
-                        <p className='error'>Incorrect email and/or password</p>
-                        <input placeholder='email' onChange={e => this.setState({email: e.target.value})} value={this.state.email} type='text'/>
-                        <p>Email</p>
-                        <input placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password} type='text'/>                        
-                        <p>Password</p>
-                        <button onClick={this.login}>Login</button>
-                        <p>Not yet registered?</p>
-                        <h4 className='register' onClick={() => this.setState({register: true, error: false})}>register here</h4>
-                    </div>
+            <div className='entire-container'>
+                <div className='login-container'>
+                    <p className='error'>Incorrect email and/or password</p>
+                    <input placeholder='email' onChange={e => this.setState({email: e.target.value})} value={this.state.email} type='text'/>
+                    <p>Email</p>
+                    <input placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password} type='text'/>                        
+                    <p>Password</p>
+                    <button onClick={this.login}>Login</button>
+                    <p>Not yet registered?</p>
+                    <h4 className='register' onClick={() => this.setState({register: true, error: false})}>register here</h4>
                 </div>
             </div>
         ) : (
-            <div>
-                <div>
-                    <div style={{backgroundImage: `url(${this.carousel})`}}></div>
-                </div>
-                <div className='right-side-container'>
-                    <div className='login-container'>
-                        <input placeholder='email' onChange={e => this.setState({email: e.target.value})} value={this.state.email} type='text'/>
-                        <p>Email</p>
-                        <input placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password} type='text'/>                        
-                        <p>Password</p>
-                        <button onClick={this.login}>Login</button>
-                        <p>Not yet registered?</p>
-                        <h4 className='register' onClick={() => this.setState({register: true})}>register here</h4>
-                    </div>
+            <div className='entire-container'>
+                <div className='login-container'>
+                    <input placeholder='email' onChange={e => this.setState({email: e.target.value})} value={this.state.email} type='text'/>
+                    <p>Email</p>
+                    <input placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password} type='text'/>                        
+                    <p>Password</p>
+                    <button onClick={this.login}>Login</button>
+                    <p>Not yet registered?</p>
+                    <h4 className='register' onClick={() => this.setState({register: true})}>register here</h4>
                 </div>
             </div>
         )

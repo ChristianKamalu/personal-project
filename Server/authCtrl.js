@@ -49,7 +49,11 @@ module.exports = {
         const db = req.app.get('db')
         if (req.session.user) {
             let listings = await db.get_listings()
-            res.status(200).send(listings)
+            res.status(200).send({
+                listings: listings,
+                userData: req.session.user,
+                loggedIn: true
+            })
         } else res.status(401).send('Please login')
     }
 }
