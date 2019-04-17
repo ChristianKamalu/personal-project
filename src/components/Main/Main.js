@@ -16,7 +16,6 @@ class Main extends Component {
     }
     componentDidMount() {
         this.props.getData()
-        console.log(this.props)
     }
 
     getFirstLetter = () => {
@@ -27,11 +26,10 @@ class Main extends Component {
         this.setState({
             options: !this.state.options
         })
-        console.log(this.state.options)
     }
 
     render() {
-        console.log(this.props)
+        console.log('this is props.user.user', this.props.user)
         return(
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <header>
@@ -46,7 +44,7 @@ class Main extends Component {
                     <div className='user-logo' onClick={this.toggleOptions}>{this.getFirstLetter()}</div>
                     :
                     <div className='user-logo' onClick={this.toggleOptions}>
-                        <i class="far fa-user"></i>                    
+                        <i className="far fa-user"></i>                    
                     </div>
                     }
                     <div className={this.state.options ? 'user-options' : 'no-display'}>
@@ -70,7 +68,7 @@ class Main extends Component {
                         <Link style={{textDecoration: 'none'}} to='/Shrubs/Messages'>
                             <li>Messages</li>
                         </Link>
-                        <Link style={{textDecoration: 'none'}}>
+                        <Link style={{textDecoration: 'none'}} to='/Shrubs/About'>
                             <li>About</li>
                         </Link>
                     </div>
@@ -89,6 +87,10 @@ class Main extends Component {
     }
 }
 
-const mapState = reduxState => reduxState
+const mapState = reduxState => {
+    return {
+        user: reduxState.user
+    }
+}
 
 export default connect(mapState, {getData})(Main)

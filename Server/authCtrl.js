@@ -20,6 +20,7 @@ module.exports = {
         }
         res.status(200).send({
             message: 'Log in Successful',
+            userData: req.session.user,
             loggedIn: true
         })
     },
@@ -51,6 +52,13 @@ module.exports = {
             let listings = await db.get_listings()
             res.status(200).send({
                 listings: listings,
+                loggedIn: true
+            })
+        } else res.status(401).send('Please login')
+    },
+    getUserInfo: async (req, res) => {
+        if (req.session.user) {
+            res.status(200).send({
                 userData: req.session.user,
                 loggedIn: true
             })

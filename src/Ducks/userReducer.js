@@ -1,29 +1,27 @@
 import axios from 'axios';
 
 const initialState = {
-    user: {
-        listings: [],
-        userData: {
-            firstName: ''
-        }
+    loggedIn: false,
+    userData: {
+        firstName: ''
     }
 }
 
 const GET_DATA = 'GET_DATA';
 
 export function getData() {
-    let data = axios.get('/Listings').then( res => res.data )
-    console.log(data)
+    let userData = axios.get('/user-info').then( res => res.data )
     return {
         type: GET_DATA,
-        payload: data
+        payload: userData
     }
 }
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_DATA + '_FULFILLED':
-            return {user: action.payload}
+            console.log('userData', action.payload)
+            return {loggedIn: action.payload.loggedIn, userData: action.payload.userData}
         default:
             return state
     }

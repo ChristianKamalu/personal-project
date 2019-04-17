@@ -61,7 +61,6 @@ a {
     width: 60vw;
     position: absolute;
     bottom: 1rem;
-    right: 20vw;
     display: flex;
     justify-content: space-around;
 }
@@ -145,4 +144,10 @@ a {
     display: flex;
     align-items: center;
     text-indent: 1rem
+}
+
+@media (max-width: 650px) {
+    .links {
+        width: 100vw
+    }
 }

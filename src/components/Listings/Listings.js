@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getData} from '../../Ducks/userReducer';
+import {getListings} from '../../Ducks/listingsReducer';
 import './Listings.css'
 
 class Listings extends Component {
     componentDidMount() {
-        this.props.getData()
+        this.props.getListings()
         console.log(this.props)
     }
 
     render() {
-        const listings = this.props.user.listings.map((listing, i) => {
+        console.log('this is listings', this.props)
+        const listings = this.props.listings.listings.map((listing, i) => {
             return (
                 <div className='listing-container'>
                     <img src={listing.image} alt='' width='150px'/>
                 </div>
             )
         })
-        console.log(this.props)
         return (
             <div className='all-listings-container'>
                 {listings}
@@ -26,6 +26,10 @@ class Listings extends Component {
     }
 }
 
-const mapState = reduxState => reduxState
+const mapState = reduxState => {
+    return {
+        listings: reduxState.listings
+    }
+}
 
-export default connect(mapState, {getData})(Listings)
+export default connect(mapState, {getListings})(Listings)
