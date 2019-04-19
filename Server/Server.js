@@ -3,6 +3,7 @@ require('dotenv').config();
 const massive = require('massive');
 const session = require('express-session');
 const authCtrl = require('./authCtrl');
+const messageCtrl = require('./messageCtrl');
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -36,9 +37,9 @@ io.on('connection', socket => {
     //     io.sockets.emit('change color', color)
     // })
 
-    socket.on('send message', (message) => {
-        console.log('Message: ', message);
-        io.sockets.emit('send message', message)
+    socket.on('send text', (text) => {
+        console.log('text: ', text);
+        io.sockets.emit('send text', text)
     })
 
     socket.on('disconnect', () => {
@@ -54,3 +55,7 @@ app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('http://localhost:3000/#/Shrubs')
 })
+
+app.post('/SendText', messageCtrl.sendText)
+app.post('/CreateMessage', messageCtrl.createMessage)
+app.get('/get-messages', messageCtrl.getMessages)

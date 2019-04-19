@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 const initialState = {
-    listings: []
+    listings: [{
+        listings: [{
+            ISBN: 0
+        }]
+    }]
 }
 
 const GET_LISTINGS = 'GET_LISTINGS';

@@ -6,11 +6,12 @@
 
 .user-options-container {
     margin-top: 1rem;
-    height: 10rem;
+    height: 6rem;
     width: 50vw;
     border-radius: 3rem;
     box-shadow: 5px 10px 15px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center
 }
@@ -36,18 +37,26 @@
     flex-wrap: wrap;
 }
 
+.listing-container:hover {
+    width: 20rem;
+    height: 25rem;
+    /* transition: .8s; */
+    transition-delay: .8s;
+}
+
 .listing-container {
     border-radius: 1rem;
-    /* border: 1px solid black; */
     padding: 1rem;
     margin: 1rem;
     width: 15rem;
-    height: 20rem;
+    height: 18.5rem;
     background-color: rgba(255, 255, 255, 0.555);
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 5px 10px 15px
+    box-shadow: 5px 10px 15px;
+    overflow: hidden;
+    transition: .3s
 }
 
 .login-link {
@@ -55,15 +64,67 @@
 }
 
 @media (max-width:800px) {
+    .listings-component {
+        width: 100%
+    }
+    
     .user-options-container {
+        display: flex;
+        justify-content: center;
         width: 90%;
     }
-
+    
     .all-listings-container {
-        width: 90%;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
     }
-
+    
     .search {
         width: 60%
+    }
+}
+
+.listing-display-component {
+    height: 100%;
+    width: 100vw;
+    position: absolute;
+    background-color: rgba(128, 128, 128, 0.486);
+    justify-content: center;
+}
+
+.listing-display-container {
+    width: 40%;
+    background-color: white;
+    position: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem
+}
+
+.empty-space {
+    height: 100%;
+    width: 100%;
+}
+
+@media (max-width:500px) {
+    .search {
+        margin-left: 1rem;
+        width: 60%;
+        text-indent: .2rem
+    }
+
+    .search-container {
+        width: 100%
+    }
+
+    .user-options-container {
+        border-radius: 0;
+        width: 100%
+    }
+    
+    .listing-display-container {
+        width: 50%
     }
 }

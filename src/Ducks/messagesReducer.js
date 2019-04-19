@@ -18,7 +18,7 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_MESSAGES + '_FULFILLED':
             console.log('messages', action.payload)
-            return {messages: action.payload}
+            return {messages: action.payload.messages}
         default:
             return state
     }

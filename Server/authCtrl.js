@@ -13,8 +13,8 @@ module.exports = {
             return res.status(401).send({ message: 'Incorrect email/password' })
         }
         req.session.user = { 
-            firstName: userArr[0].firstName,
-            lastName: userArr[0].lastName,
+            firstName: userArr[0].firstname,
+            lastName: userArr[0].lastname,
             email: userArr[0].email,
             id: userArr[0].user_id
         }
@@ -35,8 +35,8 @@ module.exports = {
         const hash = bcrypt.hashSync(password, salt);
         let newUserArr = await db.create_user([firstName, lastName, email, hash]);
         req.session.user = { 
-            firstName: newUserArr[0].firstName,
-            lastName: newUserArr[0].lastName,
+            firstName: newUserArr[0].firstname,
+            lastName: newUserArr[0].lastname,
             email: newUserArr[0].email,
             id: newUserArr[0].user_id
         }
