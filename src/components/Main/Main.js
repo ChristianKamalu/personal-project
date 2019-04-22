@@ -6,6 +6,8 @@ import './Main.css';
 import Intro from '../Intro/Intro';
 import Listings from '../Listings/Listings';
 import Messages from '../Messages/Messages';
+import MyListings from '../MyListings/MyListings';
+import Account from '../Account/Account';
 
 class Main extends Component {
     constructor(props) {
@@ -48,10 +50,17 @@ class Main extends Component {
                     }
                     <div className={this.state.options ? 'user-options' : 'no-display'}>
                         {this.props.user.loggedIn ?
+                        <div>
                         <a href='http://localhost:4000/Logout'>
                         <div className='user-option-button' style={{borderBottom: '1px solid grey'}}>Log Out</div>
-                        <div className='user-option-button'>Create Listing</div>
                         </a>
+                        <Link to='/Shrubs/MyListings'>
+                        <div className='user-option-button' style={{borderBottom: '1px solid grey'}}>My Listings</div>
+                        </Link>
+                        <Link to='/Shrubs/Account'>
+                        <div className='user-option-button'>My Account</div>
+                        </Link>
+                        </div>
                         :
                         <Link to='/Shrubs/Login'>
                         <div className='user-option-button'>Log In</div>
@@ -77,6 +86,8 @@ class Main extends Component {
                     <Route exact path='/Shrubs' component={Intro}/>
                     <Route path='/Shrubs/Listings' component={Listings}/>
                     <Route path='/Shrubs/Messages' component={Messages}/>
+                    <Route path='/Shrubs/MyListings' component={MyListings}/>
+                    <Route path='/Shrubs/Account' component={Account}/>
                 </Switch>
                 <hr style={{marginTop: '5rem'}}></hr>
                 <footer>

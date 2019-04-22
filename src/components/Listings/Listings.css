@@ -37,13 +37,6 @@
     flex-wrap: wrap;
 }
 
-.listing-container:hover {
-    width: 20rem;
-    height: 25rem;
-    /* transition: .8s; */
-    transition-delay: .8s;
-}
-
 .listing-container {
     border-radius: 1rem;
     padding: 1rem;
@@ -100,7 +93,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem
+    padding: 2rem;
+    margin-top: 2rem;
 }
 
 .empty-space {

@@ -73,6 +73,7 @@ CREATE TABLE Text (
 	text_id serial NOT NULL,
 	text varchar(500) NOT NULL,
 	message_id integer NOT NULL,
+	user_id integer not null,
 	CONSTRAINT Text_pk PRIMARY KEY (text_id)
 ) WITH (
   OIDS=FALSE

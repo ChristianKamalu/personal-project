@@ -1,0 +1,1 @@
+select * from text where message_id = $1

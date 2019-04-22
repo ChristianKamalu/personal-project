@@ -30,7 +30,7 @@ class Listings extends Component {
         console.log('buyer', this.props.user.userData.id)
         console.log('seller', this.state.targetListing.user_id)
         if(this.state.targetListing.user_id !== this.props.user.userData.id) {
-            Axios.post('/CreateMessage', {listing: this.state.targetListing, buyer: this.props.user.userData.id})
+            Axios.post('/CreateMessage', {listing: this.state.targetListing, buyer_id: this.props.user.userData.id})
         } else {alert('This is your own Listing!')}
     }
 
@@ -43,11 +43,12 @@ class Listings extends Component {
                     <div>
                         <h4 style={{marginTop: '1rem'}}>{listing.title}</h4>
                         <p>ISBN: <br/>{listing.isbn}</p>
-                        <p>Condition: <br/>{listing.condition}</p>
                     </div>
                 </div>
             )
         })
+
+
         return this.props.user.loggedIn ? (
             <div className='listings-component'>
                 <Listing 

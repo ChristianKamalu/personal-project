@@ -25,17 +25,9 @@ app.use(session({
     saveUninitialized: false
 }))
 
-// app.get('/Shrubs/Messages', function(req, res){
-//     res.send(io());
-// })
 
 io.on('connection', socket => {
     console.log('User connected')
-
-    // socket.on('change color', (color) => {
-    //     console.log('Color Changed to: ', color)
-    //     io.sockets.emit('change color', color)
-    // })
 
     socket.on('send text', (text) => {
         console.log('text: ', text);
@@ -59,3 +51,4 @@ app.get('/logout', (req, res) => {
 app.post('/SendText', messageCtrl.sendText)
 app.post('/CreateMessage', messageCtrl.createMessage)
 app.get('/get-messages', messageCtrl.getMessages)
+app.get('/getThread/:id', messageCtrl.getThread)

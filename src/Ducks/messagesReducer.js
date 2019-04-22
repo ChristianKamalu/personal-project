@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const initialState = {
-    messages: []
+    messages: [{
+        buyer_id: '',
+        seller_id: ''
+    }]
 }
 
 const GET_MESSAGES = 'GET_MESSAGES';
