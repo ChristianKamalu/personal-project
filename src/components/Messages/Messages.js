@@ -3,6 +3,7 @@ import './Messages.css'
 import {connect} from 'react-redux';
 import {getData} from '../../Ducks/userReducer';
 import {getMessages} from '../../Ducks/messagesReducer';
+import {getListings} from '../../Ducks/listingsReducer';
 import {Link} from 'react-router-dom';
 import socketIOClient from "socket.io-client";
 import Axios from 'axios';
@@ -11,7 +12,7 @@ class Messages extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            endpoint: "http://192.168.2.172:4000",
+            endpoint: "http://localhost:4000",
             color: 'white',
             messages: [{
                 message_id: ''
@@ -20,7 +21,8 @@ class Messages extends Component {
             showMessage: false,
             thread: '',
             buyerId: '',
-            sellerId: ''
+            sellerId: '',
+            listing: []
         }
     }
 
@@ -36,7 +38,8 @@ class Messages extends Component {
                     purchase: false,
                     sell: false,
                     buyerId: message.buyer_id,
-                    sellerId: message.seller_id
+                    sellerId: message.seller_id,
+                    listing: message
                 })
             })
     }
@@ -57,6 +60,7 @@ class Messages extends Component {
     componentDidMount = () => {
         this.props.getData();
         this.props.getMessages();
+        this.props.getListings();
         
         const socket = socketIOClient(this.state.endpoint);
         setInterval(this.send(), 1000)
@@ -85,29 +89,27 @@ class Messages extends Component {
             if (message.buyer_id === this.props.user.userData.id) {
                 return (
                     <div className='thread-container' key={i} onClick={() => this.getThread(message)}>
-
+                        {message.title}
                     </div>
                 )
             }
         })
-
         // eslint-disable-next-line
         const sellerThreads = this.props.messages.messages.map((message, i) => {
             if (message.seller_id === this.props.user.userData.id) {
                 return (
                     <div className='thread-container' key={i} onClick={() => this.getThread(message)}>
-
+                        {message.title}
                     </div>
                 )
             }
         })
-        
         return this.props.user.loggedIn ? (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <div className='message-thread-container'>
                     <h2>Purchase Threads:</h2>
                     <div className='threads-container'>
-                        {buyerThreads[0] ? buyerThreads : (
+                        {buyerThreads ? buyerThreads : (
                             <div>
                                 No current purchase threads
                             </div>
@@ -115,7 +117,7 @@ class Messages extends Component {
                     </div>
                     <h2>Sell Threads:</h2>
                     <div className='threads-container'>
-                        {sellerThreads[0] ? sellerThreads : (
+                        {sellerThreads ? sellerThreads : (
                             <div>
                                 No current purchase threads
                             </div>
@@ -123,7 +125,7 @@ class Messages extends Component {
                     </div>
                 </div>
                 {this.state.showMessage ? (
-                <div>
+                <div style={{display: 'flex', alignItems: 'center'}}>
                     <div className='drop-down-options' onClick={() => this.setState({purchase: !this.state.purchase, sell: false})}>
                         <div style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
                             <h4>Purchase Threads</h4><i className={this.state.purchase ? 'fas fa-chevron-right rotate' : "fas fa-chevron-right"}></i>
@@ -146,6 +148,15 @@ class Messages extends Component {
                             <button 
                                 className='send-button' 
                                 onClick={this.send}><i className="fas fa-arrow-up"></i></button>
+                        </div>
+                    </div>
+                    <div className='listing-box'>
+                        <img className='listing-image' src={this.state.listing.image} alt={this.state.listing.title} height='200px'/>
+                        <div style={{margin: '1rem', width: '90%'}}>
+                            <h4>{this.state.listing.title}</h4>
+                            <p>ISBN: <br/>{this.state.listing.isbn}</p>
+                            <p>Condition: <br/>{this.state.listing.condition}</p>
+                            <p>Price: <br/>${this.state.listing.price}</p>
                         </div>
                     </div>
                 </div>
@@ -177,8 +188,9 @@ class Messages extends Component {
 const mapState = reduxState => {
     return {
         user: reduxState.user,
-        messages: reduxState.messages
+        messages: reduxState.messages,
+        listings: reduxState.listings
     }
 }
 
-export default connect(mapState, {getData, getMessages})(Messages)
+export default connect(mapState, {getData, getMessages, getListings})(Messages)

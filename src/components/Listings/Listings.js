@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import './Listings.css';
 import Listing from './Listing';
 import Axios from 'axios';
+import swal from 'sweetalert';
 
 class Listings extends Component {
     constructor(props) {
@@ -31,16 +32,16 @@ class Listings extends Component {
         console.log('seller', this.state.targetListing.user_id)
         if(this.state.targetListing.user_id !== this.props.user.userData.id) {
             Axios.post('/CreateMessage', {listing: this.state.targetListing, buyer_id: this.props.user.userData.id})
-        } else {alert('This is your own Listing!')}
+                .then(() => swal("You're a wizard!!", 'You may now communicate with the seller in your messages tab.', 'success'))
+        } else {swal('Error!', 'This is your own listing', 'error', `Let's gooo!`)}
     }
 
     render() {
-        console.log(this.props.user.userData.id)
         const listings = this.props.listings.listings.map((listing, i) => {
             return (
                 <div className='listing-container' key={i} onClick={() => this.toggleDisplay(listing)}>
-                    <img src={listing.image} alt={listing.titlel} width='120px' height='200px'/>
-                    <div>
+                    <img src={listing.image} alt={listing.titlel} height='170px'/>
+                    <div style={{width: '90%'}}>
                         <h4 style={{marginTop: '1rem'}}>{listing.title}</h4>
                         <p>ISBN: <br/>{listing.isbn}</p>
                     </div>
@@ -51,11 +52,6 @@ class Listings extends Component {
 
         return this.props.user.loggedIn ? (
             <div className='listings-component'>
-                <Listing 
-                    displayListing={this.state.displayListing}
-                    toggleDisplay={this.toggleDisplay}
-                    targetListing={this.state.targetListing}
-                    buy={this.buy}/>
                 <div className='user-options-container'>
                     <div className='search-container'>
                         <input className='search' placeholder='Search by "title" or "ISBN"'/>
@@ -65,6 +61,11 @@ class Listings extends Component {
                 <div className='all-listings-container'>
                     {listings}
                 </div>
+                <Listing 
+                    displayListing={this.state.displayListing}
+                    toggleDisplay={this.toggleDisplay}
+                    targetListing={this.state.targetListing}
+                    buy={this.buy}/>
             </div>
         ) : (
             <div>

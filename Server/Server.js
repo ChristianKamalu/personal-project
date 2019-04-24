@@ -4,6 +4,7 @@ const massive = require('massive');
 const session = require('express-session');
 const authCtrl = require('./authCtrl');
 const messageCtrl = require('./messageCtrl');
+const listingCtrl = require('./listingCtrl');
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -52,3 +53,5 @@ app.post('/SendText', messageCtrl.sendText)
 app.post('/CreateMessage', messageCtrl.createMessage)
 app.get('/get-messages', messageCtrl.getMessages)
 app.get('/getThread/:id', messageCtrl.getThread)
+
+app.post('/Create-Listing', listingCtrl.createListing)

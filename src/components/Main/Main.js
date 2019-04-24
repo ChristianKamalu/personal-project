@@ -52,13 +52,13 @@ class Main extends Component {
                         {this.props.user.loggedIn ?
                         <div>
                         <a href='http://localhost:4000/Logout'>
-                        <div className='user-option-button' style={{borderBottom: '1px solid grey'}}>Log Out</div>
+                        <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>Log Out</div>
                         </a>
                         <Link to='/Shrubs/MyListings'>
-                        <div className='user-option-button' style={{borderBottom: '1px solid grey'}}>My Listings</div>
+                        <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>My Listings</div>
                         </Link>
                         <Link to='/Shrubs/Account'>
-                        <div className='user-option-button'>My Account</div>
+                        <div className='user-option-button' onClick={this.toggleOptions}>My Account</div>
                         </Link>
                         </div>
                         :
@@ -89,7 +89,7 @@ class Main extends Component {
                     <Route path='/Shrubs/MyListings' component={MyListings}/>
                     <Route path='/Shrubs/Account' component={Account}/>
                 </Switch>
-                <hr style={{marginTop: '5rem'}}></hr>
+                {/* <hr style={{marginTop: '5rem'}}></hr> */}
                 <footer>
 
                 </footer>
