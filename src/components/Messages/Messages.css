@@ -21,13 +21,13 @@
 
 .thread-container:hover {
     background-color: rgba(182, 182, 182, 0.267);
-    box-shadow: 2px 0px 4px
+    box-shadow: 2px 0px 
 }
 
 .thread-container {
     width: calc(100% - 2rem);
-    box-shadow: 3px 1px 6px;
     padding: .5rem;
+    border-bottom: 1px solid grey
 }
 
 .message-box {
@@ -125,19 +125,61 @@
     transform: rotate(90deg);
 }
 
-@media (max-width: 700px) {
+.all-container {
+    display: flex;    
+}
+
+.buyer-threads-dropdown {
+    width: 100%;
+    display: none
+}
+
+.seller-threads-dropdown {
+    width: 100%;
+    display: none
+}
+
+@media (max-width: 1300px) {
+    .message-box {
+        margin: .5rem
+    }
+
+    .listing-box {
+        margin: .5rem
+    }
+
+    .message-thread-container {
+        margin: .5rem
+    }
+}
+
+@media (max-width: 1050px) {
+    .all-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .drop-down-options {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 3rem;
         width: 100vw;
         background-color: rgba(100, 148, 237, 0.507);
-
     }
 
     .message-thread-container {
         display: none;
+    }
 
+    .buyer-threads-dropdown {
+        display: flex;
+        flex-direction: column
+    }
+
+    .seller-threads-dropdown {
+        display: flex;
+        flex-direction: column
     }
 }

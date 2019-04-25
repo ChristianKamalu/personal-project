@@ -7,12 +7,13 @@ import {getListings} from '../../Ducks/listingsReducer';
 import {Link} from 'react-router-dom';
 import socketIOClient from "socket.io-client";
 import Axios from 'axios';
+import { readFileSync } from 'fs';
 
 class Messages extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            endpoint: "http://localhost:4000",
+            endpoint: "http://192.168.2.172:4000",
             color: 'white',
             messages: [{
                 message_id: ''
@@ -24,6 +25,10 @@ class Messages extends Component {
             sellerId: '',
             listing: []
         }
+    }
+
+    focusMessage = () => {
+        this.message.current.focus();
     }
 
     getThread = (message) => {
@@ -61,18 +66,32 @@ class Messages extends Component {
         this.props.getData();
         this.props.getMessages();
         this.props.getListings();
+
         
         const socket = socketIOClient(this.state.endpoint);
         setInterval(this.send(), 1000)
             
         socket.on('send text', (text) => {
-        console.log('text:', text)
-        this.setState({
-            messages: [...this.state.messages, text],
-            text: ''
-        })
+            this.setState({
+                messages: [...this.state.messages, text],
+                text: ''
+            })
         })
     }
+
+    // toggleShowPurchase = () => {
+    //     this.setState({
+    //         showPurchase: !this.state.showPurchase,
+    //         showSell: false
+    //     })
+    // }
+
+    // toggleShowSell = () => {
+    //     this.setState({
+    //         showPurchase: false,
+    //         showSell: !this.state.showSell
+    //     })
+    // }
     
     render() {
         // eslint-disable-next-line
@@ -105,7 +124,7 @@ class Messages extends Component {
             }
         })
         return this.props.user.loggedIn ? (
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className='all-container'>
                 <div className='message-thread-container'>
                     <h2>Purchase Threads:</h2>
                     <div className='threads-container'>
@@ -125,17 +144,19 @@ class Messages extends Component {
                     </div>
                 </div>
                 {this.state.showMessage ? (
-                <div style={{display: 'flex', alignItems: 'center'}}>
+                <div className='all-container'>
                     <div className='drop-down-options' onClick={() => this.setState({purchase: !this.state.purchase, sell: false})}>
                         <div style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
                             <h4>Purchase Threads</h4><i className={this.state.purchase ? 'fas fa-chevron-right rotate' : "fas fa-chevron-right"}></i>
                         </div>
                     </div>
+                    <div className={this.state.purchase ? 'buyer-threads-dropdown' : 'no-display'}>{buyerThreads}</div>
                     <div className='drop-down-options' onClick={() => this.setState({sell: !this.state.sell, purchase: false})}>
                         <div style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
                             <h4>Sell Threads</h4><i className={this.state.sell ? 'fas fa-chevron-right rotate' : "fas fa-chevron-right"}></i>
                         </div>
                     </div>
+                    <div className={this.state.sell ? 'seller-threads-dropdown' : 'no-display'}>{sellerThreads}</div>
                     <div className='message-box'>
                         <div className='messages-container'>
                         {messages}
@@ -162,16 +183,18 @@ class Messages extends Component {
                 </div>
                 ) : (
                 <div style={{height: '41rem'}}>
-                <div className='drop-down-options' onClick={() => this.setState({purchase: !this.state.purchase, sell: false})}>
-                    <div style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
-                        <h4>Purchase Threads</h4><i className={this.state.purchase ? 'fas fa-chevron-right rotate' : "fas fa-chevron-right"}></i>
+                    <div className='drop-down-options' onClick={() => this.setState({purchase: !this.state.purchase, sell: false})}>
+                        <div style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
+                            <h4>Purchase Threads</h4><i className={this.state.purchase ? 'fas fa-chevron-right rotate' : "fas fa-chevron-right"}></i>
+                        </div>
                     </div>
-                </div>
-                <div className='drop-down-options' onClick={() => this.setState({sell: !this.state.sell, purchase: false})}>
-                    <div style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
-                        <h4>Sell Threads</h4><i className={this.state.sell ? 'fas fa-chevron-right rotate' : "fas fa-chevron-right"}></i>
+                    <div className={this.state.purchase ? 'buyer-threads-dropdown' : 'no-display'}>{buyerThreads}</div>
+                    <div className='drop-down-options' onClick={() => this.setState({sell: !this.state.sell, purchase: false})}>
+                        <div style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
+                            <h4>Sell Threads</h4><i className={this.state.sell ? 'fas fa-chevron-right rotate' : "fas fa-chevron-right"}></i>
+                        </div>
                     </div>
-                </div>
+                    <div className={this.state.sell ? 'seller-threads-dropdown' : 'no-display'}>{sellerThreads}</div>
                     Select a thread to see messages
                 </div>
                 )

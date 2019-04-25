@@ -33,7 +33,7 @@ class Listings extends Component {
         if(this.state.targetListing.user_id !== this.props.user.userData.id) {
             Axios.post('/CreateMessage', {listing: this.state.targetListing, buyer_id: this.props.user.userData.id})
                 .then(() => swal("You're a wizard!!", 'You may now communicate with the seller in your messages tab.', 'success'))
-        } else {swal('Error!', 'This is your own listing', 'error', `Let's gooo!`)}
+        } else {swal('Error!', 'This is your own listing', 'error')}
     }
 
     render() {

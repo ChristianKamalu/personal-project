@@ -1,6 +1,6 @@
 .left-side-container {
-    height: 40rem;
-    width: 20rem;
+    width: 15rem;
+    min-height: calc(100vh - 25rem);
     border-right: 1px solid grey;
     display: flex;
     flex-direction: column;

@@ -55,3 +55,5 @@ app.get('/get-messages', messageCtrl.getMessages)
 app.get('/getThread/:id', messageCtrl.getThread)
 
 app.post('/Create-Listing', listingCtrl.createListing)
+app.put('/Edit-Listing', listingCtrl.editListing)
+app.delete('/Delete-Listing/:listing_id', listingCtrl.deleteListing)

@@ -13,12 +13,14 @@ class MyListings extends Component {
         this.state = {
             displayListing: false,
             createListing: false,
+            editListing: false,
             targetListing: '',
             title: '',
             ISBN: '',
             condition: '',
             price: '',
-            image: ''
+            image: '',
+            textbook_id: ''
         }
     }
 
@@ -30,7 +32,13 @@ class MyListings extends Component {
         this.setState({
             displayListing: !this.state.displayListing,
             targetListing: listing,
-            createListing: false
+            editListing: false,
+            createListing: false,
+            title: '',
+            ISBN: '',
+            image: '',
+            price: '',
+            condition: ''
         })
     }
 
@@ -41,6 +49,19 @@ class MyListings extends Component {
         })
     }
 
+    toggleEdit = () => {
+        console.log('target', this.state.targetListing)
+        this.setState({
+            editListing: !this.state.editListing,
+            title: this.state.targetListing.title,
+            ISBN: this.state.targetListing.isbn,
+            image: this.state.targetListing.image,
+            condition: this.state.targetListing.condition,
+            price: this.state.targetListing.price,
+            textbook_id: this.state.targetListing.textbook_id
+        })
+    }
+
     setValue = (target) => {
         const {name, value} = target;
         this.setState({
@@ -48,12 +69,51 @@ class MyListings extends Component {
         })
     }
 
-    createListing = () => {
-        Axios.post('/Create-Listing', {state: this.state, user_id: this.props.user.userData.id})
+    createListing = async () => {
+        if(this.state.title && this.state.image && this.state.condition && this.state.price && this.state.ISBN) {
+        await Axios.post('/Create-Listing', {state: this.state, user_id: this.props.user.userData.id})
             .then(() => {
+                this.props.getListings()
+                this.setState({
+                    displayListing: false,
+                    editListing: false
+                })
                 swal('Completed', 'New Listing Created', 'success')
             })
-        this.toggleDisplay();
+        } else {swal('?', 'Please fill out all of the boxes.', 'error')}
+    }
+
+    editListing = async () => {
+        if(this.state.title && this.state.image && this.state.condition && this.state.price && this.state.ISBN) {
+            await Axios.put('/Edit-Listing', {state: this.state})
+            .then(() => {
+                this.props.getListings()
+                this.setState({
+                    displayListing: false,
+                    createListing: false
+                })
+                swal('Completed', 'Listing Updated', 'success')
+            })
+        } else {swal('?', 'Please fill out all of the boxes.', 'error')}
+    }
+
+    deleteListing = () => {
+        swal("Are you sure you want to do this?", {
+            buttons: ["Cancel", "Delete"],
+            dangerMode: true
+            })
+            .then(async (willDelete) => {
+                if(willDelete) {
+                    await Axios.delete(`/Delete-Listing/${this.state.targetListing.listing_id}`)
+                        .then(async () => {
+                            this.props.getListings();
+                            await this.setState({
+                                displayListing: false
+                            })
+                            swal('Cool Beans', 'Listing deleted.', 'success')
+                        })
+                }
+            })
     }
 
     render() {
@@ -71,8 +131,9 @@ class MyListings extends Component {
                 )
             }
         })
+        
         return this.props.user.loggedIn ? (
-            <div style={{display: 'flex', width: '100vw'}}>
+            <div style={{display: 'flex', width: '100vw', height: '100%'}}>
                 <div className='left-container'>
                     <div>
                         <Link to='/Shrubs/MyListings'>
@@ -91,9 +152,12 @@ class MyListings extends Component {
                 </div>
                 <MyListing 
                 toggleDisplay={this.toggleDisplay}
+                toggleEdit={this.toggleEdit}
                 state={this.state}
                 setValue={this.setValue}
                 createListing={this.createListing}
+                editListing={this.editListing}
+                deleteListing={this.deleteListing}
                 />
             </div>
         ) : (

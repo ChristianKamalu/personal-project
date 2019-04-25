@@ -1,3 +1,3 @@
-select listing_id, user_id, bought, ISBN, title, condition, price, image
+select listing_id, t.textbook_id, user_id, bought, ISBN, title, condition, price, image
 from Textbook_Listing
-join Textbook on Textbook_Listing.textbook_id=Textbook.textbook_id
+join Textbook t on Textbook_Listing.textbook_id=t.textbook_id
