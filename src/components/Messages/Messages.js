@@ -7,7 +7,6 @@ import {getListings} from '../../Ducks/listingsReducer';
 import {Link} from 'react-router-dom';
 import socketIOClient from "socket.io-client";
 import Axios from 'axios';
-import { readFileSync } from 'fs';
 
 class Messages extends Component {
     constructor(props) {
