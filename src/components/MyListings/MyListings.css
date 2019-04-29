@@ -29,7 +29,8 @@
 }
 
 .edit-section-container {
-    width: 90%
+    width: 90%;
+    margin: 1rem
 }
 
 .edit-create-input {
@@ -51,4 +52,11 @@
     align-items: center;
     padding: 2rem;
     margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+    .edit-container {
+        flex-direction: row;
+        
+    }
 }

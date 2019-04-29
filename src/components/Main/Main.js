@@ -8,6 +8,7 @@ import Listings from '../Listings/Listings';
 import Messages from '../Messages/Messages';
 import MyListings from '../MyListings/MyListings';
 import Account from '../Account/Account';
+import About from '../About/About';
 
 class Main extends Component {
     constructor(props) {
@@ -36,7 +37,7 @@ class Main extends Component {
                 <header>
                     <div className='header-title'>
                         <Link to='/Shrubs' style={{textDecoration: 'none', color: 'white'}}>
-                            <h1>SHRUBS</h1>
+                            <h1 style={{fontSize: '4rem'}}>SHRUBS</h1>
                         </Link>
                         <h3>The DIY Textbook Exchange</h3>
                     </div>
@@ -49,22 +50,27 @@ class Main extends Component {
                     </div>
                     }
                     <div className={this.state.options ? 'user-options' : 'no-display'}>
+                    <div style={{position: 'fixed', right: '0', top: '0', width: '100vw', height: '100vh'}} onClick={this.toggleOptions}></div>
                         {this.props.user.loggedIn ?
-                        <div>
-                        <a href='http://localhost:4000/Logout'>
-                        <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>Log Out</div>
-                        </a>
-                        <Link to='/Shrubs/MyListings'>
-                        <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>My Listings</div>
-                        </Link>
-                        <Link to='/Shrubs/Account'>
-                        <div className='user-option-button' onClick={this.toggleOptions}>My Account</div>
-                        </Link>
+                        <div style={{zIndex: '1'}}>
+                            <div>
+                            <a href='http://localhost:4000/Logout'>
+                            <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>Log Out</div>
+                            </a>
+                            <Link to='/Shrubs/MyListings'>
+                            <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>My Listings</div>
+                            </Link>
+                            <Link to='/Shrubs/Account'>
+                            <div className='user-option-button' onClick={this.toggleOptions}>My Account</div>
+                            </Link>
+                            </div>
                         </div>
                         :
-                        <Link to='/Shrubs/Login'>
-                        <div className='user-option-button'>Log In</div>
-                        </Link>
+                        <div style={{zIndex: '1'}}>
+                            <Link to='/Shrubs/Login'>
+                            <div className='user-option-button'>Log In</div>
+                            </Link>
+                        </div>
                         }
                     </div>
                     <div className='links'>
@@ -86,10 +92,11 @@ class Main extends Component {
                     <Route exact path='/Shrubs' component={Intro}/>
                     <Route path='/Shrubs/Listings' component={Listings}/>
                     <Route path='/Shrubs/Messages' component={Messages}/>
+                    <Route path='/Shrubs/About' component={About}/>
                     <Route path='/Shrubs/MyListings' component={MyListings}/>
                     <Route path='/Shrubs/Account' component={Account}/>
                 </Switch>
-                {/* <hr style={{marginTop: '5rem'}}></hr> */}
+                <hr></hr>
                 <footer>
 
                 </footer>

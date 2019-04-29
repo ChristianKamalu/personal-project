@@ -25,13 +25,15 @@ header {
 }
 
 footer {
+    width: 100vw;
     height: 5rem;
+    background-color: grey
 }
 
 hr {
     margin: 0;
     width: 95vw;
-    color: black
+    color: rgb(0, 0, 0)
 }
 
 a {
@@ -53,16 +55,17 @@ a {
 
 .header-title {
     color: white;
-    margin-top: 2rem;
-    font-size: 2rem
+    margin-top: 3rem;
 }
 
 .links {
     width: 60vw;
+    height: 3rem;
     position: absolute;
-    bottom: 1rem;
+    bottom: 0;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .main-container {

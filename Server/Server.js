@@ -5,6 +5,7 @@ const session = require('express-session');
 const authCtrl = require('./authCtrl');
 const messageCtrl = require('./messageCtrl');
 const listingCtrl = require('./listingCtrl');
+const noedemailer = require('nodemailer');
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -57,3 +58,7 @@ app.get('/getThread/:id', messageCtrl.getThread)
 app.post('/Create-Listing', listingCtrl.createListing)
 app.put('/Edit-Listing', listingCtrl.editListing)
 app.delete('/Delete-Listing/:listing_id', listingCtrl.deleteListing)
+
+app.post('/send-email', function(req, res) => {
+    
+})

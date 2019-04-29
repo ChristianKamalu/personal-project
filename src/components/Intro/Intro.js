@@ -8,53 +8,30 @@ export default function Intro() {
             <hr/>
             <h1 className='how-it-works'>- HOW IT WORKS -</h1>
             <hr/>
-            {/* <div style={{display: 'flex'}}>
-                <h2 style={{color: 'green'}}>BUY</h2>
-                <h2>&</h2>
-                <h2 style={{color: 'orangered'}}>SELL</h2>
-            </div> */}
             <Carousel
                 className='carousel'
                 interval={3000}
             >
                 <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src="https://images.unsplash.com/photo-1464747108843-cec40b4f0157?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
-                    alt="First slide"
-                    />
-                    <Carousel.Caption
-                        className='carousel-caption'
-                    >
-                        <h3 className="title">First slide label</h3>
-                        <p style={{marginBottom: 0}}>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
+                    <div className="directions-container">
+                        <div className='circle'><i className="fas fa-sign-in-alt" style={{fontSize: '5rem', color:' rgb(43, 135, 221)'}}></i></div>
+                        <h3 style={{textAlign: 'center'}}>Sign In</h3>
+                        <p className='instruction'><br/>(Registering is easy if you do not already have an account)</p>
+                    </div>
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src="https://images.unsplash.com/photo-1455287137723-7974edb0c07e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1489&q=80"
-                    alt="First slide"
-                    />
-                    <Carousel.Caption
-                        className='carousel-caption'
-                    >
-                        <h3 className='title'>First slide label</h3>
-                        <p style={{marginBottom: 0}}>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
+                    <div className="directions-container">
+                        <div className='circle'><i className="fas fa-folder-plus" style={{fontSize: '5rem', color:' rgb(43, 135, 221)'}}></i></div>
+                        <h3 style={{textAlign: 'center'}}>Create a Listing</h3>
+                        <p className='instruction'><br/>Have any textbooks laying around?</p>
+                    </div>
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img
-                    className="d-block w-100"
-                    src="https://images.unsplash.com/photo-1497941818502-94b842b7ec0f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1403&q=80"
-                    alt="First slide"
-                    />
-                    <Carousel.Caption
-                        className='carousel-caption'
-                    >
-                        <h3 className="title">First slide label</h3>
-                        <p style={{marginBottom: 0}}>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
+                    <div className="directions-container">
+                        <div className='circle'><i className="fas fa-search" style={{fontSize: '5rem', color:' rgb(43, 135, 221)'}}></i></div>
+                        <h3 style={{textAlign: 'center'}}>Browse Listings</h3>
+                        <p className='instruction'><br/>Looking for a specific book?</p>
+                    </div>
                 </Carousel.Item>
             </Carousel>
             {/* <h2 style={{color: 'orangered'}}>SELL</h2>

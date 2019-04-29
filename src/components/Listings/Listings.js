@@ -12,7 +12,8 @@ class Listings extends Component {
         super(props)
         this.state = {
             displayListing: false,
-            targetListing: ''
+            targetListing: '',
+            searchResults: ''
         }
     }
 
@@ -27,6 +28,14 @@ class Listings extends Component {
         })
     }
 
+    // search = (input) => {
+    //     console.log(input)
+    //     let searchResults = this.props.listings.listings.map(listing => {
+    //         return listing.title.toLowerCase().includes(this.state.searchResults.toLowerCase())
+    //     })
+    //     console.log('results', searchResults)
+    // }
+
     buy = () => {
         console.log('buyer', this.props.user.userData.id)
         console.log('seller', this.state.targetListing.user_id)
@@ -40,22 +49,57 @@ class Listings extends Component {
         const listings = this.props.listings.listings.map((listing, i) => {
             return (
                 <div className='listing-container' key={i} onClick={() => this.toggleDisplay(listing)}>
-                    <img src={listing.image} alt={listing.titlel} height='170px'/>
+                    <img src={listing.image} alt={listing.titlel} height='150px'/>
                     <div style={{width: '90%'}}>
-                        <h4 style={{marginTop: '1rem'}}>{listing.title}</h4>
-                        <p>ISBN: <br/>{listing.isbn}</p>
+                        <h4 style={{fontSize: '1rem', fontWeight: '700', marginTop: '0'}}>{listing.title}</h4>
+                        <p>ISBN: {listing.isbn}</p>
                     </div>
                 </div>
             )
         })
 
 
-        return this.props.user.loggedIn ? (
+        // eslint-disable-next-line
+        const filtered = this.props.listings.listings.map((listing, i) => {
+            console.log('listings', listing.title)
+
+            if (listing.title.toLowerCase().includes(this.state.searchResults.toLowerCase()) || listing.isbn === this.state.searchResults) {
+                return (
+                    <div className='listing-container' key={i} onClick={() => this.toggleDisplay(listing)}>
+                        <img src={listing.image} alt={listing.title} height='150px'/>
+                        <div style={{width: '90%'}}>
+                            <h4 style={{fontSize: '1rem', fontWeight: '700', marginTop: '0'}}>{listing.title}</h4>
+                            <p>ISBN: {listing.isbn}</p>
+                        </div>
+                    </div>
+                )
+            }
+        })
+
+
+        return this.props.user.loggedIn ? this.state.searchResults ? (
             <div className='listings-component'>
                 <div className='user-options-container'>
                     <div className='search-container'>
-                        <input className='search' placeholder='Search by "title" or "ISBN"'/>
-                        <button className='search-button'>Search</button>
+                        <input className='search' placeholder='Search by "title" or "ISBN"' onChange={e => this.setState({searchResults: e.target.value})}/>
+                        {/* <button className='search-button' onClick={this.search}>Search</button> */}
+                    </div>
+                </div>
+                <div className='all-listings-container'>
+                    {filtered}
+                </div>
+                <Listing 
+                    displayListing={this.state.displayListing}
+                    toggleDisplay={this.toggleDisplay}
+                    targetListing={this.state.targetListing}
+                    buy={this.buy}/>
+            </div>
+        ) : (
+            <div className='listings-component'>
+                <div className='user-options-container'>
+                    <div className='search-container'>
+                        <input className='search' placeholder='Search by "title" or "ISBN"' onChange={e => this.setState({searchResults: e.target.value})}/>
+                        {/* <button className='search-button' onClick={this.search}>Search</button> */}
                     </div>
                 </div>
                 <div className='all-listings-container'>

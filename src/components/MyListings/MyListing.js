@@ -7,8 +7,9 @@ export default function MyListing (props) {
         <div className='listing-display-component' style={props.state.displayListing ? {display: 'flex', justifyContent:'center'} : {display: 'none'}}>
             <div className='empty-space' onClick={props.toggleDisplay}/>
             <div className='listing-display-container'>
-                <div className='edit-section-container'>
                     <img src={props.state.image} alt={props.state.title} width='40%'/>
+                <div className='edit-section-container'>
+                    <i className="fas fa-times exit" onClick={props.toggleDisplay}></i>
                     <p>Image: <br/><input className='edit-create-input' placeholder='image' name='image' onChange={e => props.setValue(e.target)}/></p>
                     <p style={{marginTop: '1rem'}}>Title: <br/><input className='edit-create-input' placeholder='title' name='title' value={props.state.title} onChange={e => props.setValue(e.target)}/></p>
                     <p>ISBN: <br/><input className='edit-create-input' placeholder='ISBN' type='number' name='ISBN' value={props.state.ISBN} onChange={e => props.setValue(e.target)}/></p>
@@ -25,6 +26,7 @@ export default function MyListing (props) {
             <div className='empty-space' onClick={props.toggleDisplay}/>
             <div className='edit-container'>
                 <div className='edit-section-container'>
+                    <i className="fas fa-times exit" onClick={props.toggleDisplay}></i>
                     <img src={props.state.image} alt={props.state.title} width='40%'/>
                     <p>Image: <br/><input className='edit-create-input' placeholder='image' name='image' value={props.state.image} onChange={e => props.setValue(e.target)}/></p>
                     <p style={{marginTop: '1rem'}}>Title: <br/><input className='edit-create-input' placeholder='title' name='title' value={props.state.title} onChange={e => props.setValue(e.target)}/></p>
@@ -43,6 +45,7 @@ export default function MyListing (props) {
             <div className='empty-space' onClick={props.toggleDisplay}/>
             <div className='listing-display-container'>
                 <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                    <i className="fas fa-times exit" onClick={props.toggleDisplay}></i>
                     <img src={props.state.targetListing.image} alt={props.state.targetListing.title} width='40%'/>
                     <div>
                         <h4 style={{marginTop: '1rem'}}>{props.state.targetListing.title}</h4>

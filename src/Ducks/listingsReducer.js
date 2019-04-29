@@ -2,9 +2,8 @@ import axios from 'axios';
 
 const initialState = {
     listings: [{
-        listings: [{
-            ISBN: 0
-        }]
+        isbn: '',
+        title: ''
     }]
 }
 

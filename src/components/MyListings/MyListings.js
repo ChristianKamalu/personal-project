@@ -122,9 +122,9 @@ class MyListings extends Component {
             if (listing.user_id === this.props.user.userData.id) {
                 return (
                     <div className='listing-container' key={i} onClick={() => this.toggleDisplay(listing)}>
-                        <img src={listing.image} alt={listing.titlel} width='120px'/>
+                        <img src={listing.image} alt={listing.titlel} height='150px'/>
                         <div>
-                            <h4 style={{marginTop: '1rem'}}>{listing.title}</h4>
+                            <h4 style={{fontSize: '1rem', fontWeight: '700', marginTop: '0'}}>{listing.title}</h4>
                             <p>ISBN: <br/>{listing.isbn}</p>
                         </div>
                     </div>

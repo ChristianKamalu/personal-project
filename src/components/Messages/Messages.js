@@ -7,6 +7,8 @@ import {getListings} from '../../Ducks/listingsReducer';
 import {Link} from 'react-router-dom';
 import socketIOClient from "socket.io-client";
 import Axios from 'axios';
+import { css } from 'glamor';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 class Messages extends Component {
     constructor(props) {
@@ -78,21 +80,17 @@ class Messages extends Component {
         })
     }
 
-    // toggleShowPurchase = () => {
-    //     this.setState({
-    //         showPurchase: !this.state.showPurchase,
-    //         showSell: false
-    //     })
-    // }
-
-    // toggleShowSell = () => {
-    //     this.setState({
-    //         showPurchase: false,
-    //         showSell: !this.state.showSell
-    //     })
-    // }
+    
     
     render() {
+        const ROOT_CSS = css({
+            width: '95%', 
+            height: 'calc(100% - 3rem)', 
+            overflowX: 'scroll', 
+            overflowY: 'scroll', 
+            marginTop: '1rem'
+        });
+
         // eslint-disable-next-line
         const messages = this.state.messages.map((text, i) => {
             if(text.user_id === this.state.buyerId || text.user_id === this.state.sellerId) {
@@ -122,6 +120,8 @@ class Messages extends Component {
                 )
             }
         })
+
+        
         return this.props.user.loggedIn ? (
             <div className='all-container'>
                 <div className='message-thread-container'>
@@ -145,56 +145,57 @@ class Messages extends Component {
                 {this.state.showMessage ? (
                 <div className='all-container'>
                     <div className='drop-down-options' onClick={() => this.setState({purchase: !this.state.purchase, sell: false})}>
-                        <div style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
+                        <div style={{width: '80%', display: 'flex', justifyContent: 'space-between'}}>
                             <h4>Purchase Threads</h4><i className={this.state.purchase ? 'fas fa-chevron-right rotate' : "fas fa-chevron-right"}></i>
                         </div>
                     </div>
                     <div className={this.state.purchase ? 'buyer-threads-dropdown' : 'no-display'}>{buyerThreads}</div>
                     <div className='drop-down-options' onClick={() => this.setState({sell: !this.state.sell, purchase: false})}>
-                        <div style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
+                        <div style={{width: '80%', display: 'flex', justifyContent: 'space-between'}}>
                             <h4>Sell Threads</h4><i className={this.state.sell ? 'fas fa-chevron-right rotate' : "fas fa-chevron-right"}></i>
                         </div>
                     </div>
                     <div className={this.state.sell ? 'seller-threads-dropdown' : 'no-display'}>{sellerThreads}</div>
-                    <div className='message-box'>
-                        <div className='messages-container'>
-                        {messages}
+                    <div className='message-listing-container'>
+                        <div className='message-box'>
+                            <ScrollToBottom className={ROOT_CSS} style={{width: '95%', height: 'calc(100% - 3rem)', overflowX: 'scroll', overflowY: 'scroll', marginTop: '1rem'}}>
+                            {messages}
+                            </ScrollToBottom>
+                            <div className='input-button'>
+                                <input className='message-input' 
+                                    placeholder='send message' 
+                                    value={this.state.text} 
+                                    onChange={e => this.setState({text: e.target.value})}/>
+                                <button 
+                                    className='send-button' 
+                                    onClick={this.send}><i className="fas fa-arrow-up"></i></button>
+                            </div>
                         </div>
-                        <div className='input-button'>
-                            <input className='message-input' 
-                                placeholder='send message' 
-                                value={this.state.text} 
-                                onChange={e => this.setState({text: e.target.value})}/>
-                            <button 
-                                className='send-button' 
-                                onClick={this.send}><i className="fas fa-arrow-up"></i></button>
-                        </div>
-                    </div>
-                    <div className='listing-box'>
-                        <img className='listing-image' src={this.state.listing.image} alt={this.state.listing.title} height='200px'/>
-                        <div style={{margin: '1rem', width: '90%'}}>
-                            <h4>{this.state.listing.title}</h4>
-                            <p>ISBN: <br/>{this.state.listing.isbn}</p>
-                            <p>Condition: <br/>{this.state.listing.condition}</p>
-                            <p>Price: <br/>${this.state.listing.price}</p>
+                        <div className='listing-box'>
+                            <img className='listing-image' src={this.state.listing.image} alt={this.state.listing.title} height='150px'/>
+                            <div style={{margin: '1rem', width: '90%'}}>
+                                <h4>{this.state.listing.title}</h4>
+                                <p>ISBN: <br/>{this.state.listing.isbn}</p>
+                                <p>Condition: <br/>{this.state.listing.condition}</p>
+                                <p>Price: <br/>${this.state.listing.price}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 ) : (
-                <div style={{height: '41rem'}}>
+                <div style={{height: '41rem', display: 'flex', flexDirection: 'column'}}>
                     <div className='drop-down-options' onClick={() => this.setState({purchase: !this.state.purchase, sell: false})}>
-                        <div style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
+                        <div style={{width: '80%', display: 'flex', justifyContent: 'space-between'}}>
                             <h4>Purchase Threads</h4><i className={this.state.purchase ? 'fas fa-chevron-right rotate' : "fas fa-chevron-right"}></i>
                         </div>
                     </div>
                     <div className={this.state.purchase ? 'buyer-threads-dropdown' : 'no-display'}>{buyerThreads}</div>
                     <div className='drop-down-options' onClick={() => this.setState({sell: !this.state.sell, purchase: false})}>
-                        <div style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
+                        <div style={{width: '80%', display: 'flex', justifyContent: 'space-between'}}>
                             <h4>Sell Threads</h4><i className={this.state.sell ? 'fas fa-chevron-right rotate' : "fas fa-chevron-right"}></i>
                         </div>
                     </div>
                     <div className={this.state.sell ? 'seller-threads-dropdown' : 'no-display'}>{sellerThreads}</div>
-                    Select a thread to see messages
                 </div>
                 )
                 }
