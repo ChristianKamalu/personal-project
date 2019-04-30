@@ -6,6 +6,23 @@ import './Listings.css';
 import Listing from './Listing';
 import Axios from 'axios';
 import swal from 'sweetalert';
+import styled from 'styled-components';
+
+const ListingContainer = styled.div`
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+    width: 15rem;
+    height: 18.5rem;
+    background-color: rgba(255, 255, 255, 0.555);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 5px 10px 15px;
+    overflow: hidden;
+    transition: .3s
+`
 
 class Listings extends Component {
     constructor(props) {
@@ -28,17 +45,7 @@ class Listings extends Component {
         })
     }
 
-    // search = (input) => {
-    //     console.log(input)
-    //     let searchResults = this.props.listings.listings.map(listing => {
-    //         return listing.title.toLowerCase().includes(this.state.searchResults.toLowerCase())
-    //     })
-    //     console.log('results', searchResults)
-    // }
-
     buy = () => {
-        console.log('buyer', this.props.user.userData.id)
-        console.log('seller', this.state.targetListing.user_id)
         if(this.state.targetListing.user_id !== this.props.user.userData.id) {
             Axios.post('/CreateMessage', {listing: this.state.targetListing, buyer_id: this.props.user.userData.id})
                 .then(() => swal("You're a wizard!!", 'You may now communicate with the seller in your messages tab.', 'success'))
@@ -48,20 +55,19 @@ class Listings extends Component {
     render() {
         const listings = this.props.listings.listings.map((listing, i) => {
             return (
-                <div className='listing-container' key={i} onClick={() => this.toggleDisplay(listing)}>
+                <ListingContainer key={i} onClick={() => this.toggleDisplay(listing)}>
                     <img src={listing.image} alt={listing.titlel} height='150px'/>
                     <div style={{width: '90%'}}>
                         <h4 style={{fontSize: '1rem', fontWeight: '700', marginTop: '0'}}>{listing.title}</h4>
                         <p>ISBN: {listing.isbn}</p>
                     </div>
-                </div>
+                </ListingContainer>
             )
         })
 
 
         // eslint-disable-next-line
         const filtered = this.props.listings.listings.map((listing, i) => {
-            console.log('listings', listing.title)
 
             if (listing.title.toLowerCase().includes(this.state.searchResults.toLowerCase()) || listing.isbn === this.state.searchResults) {
                 return (

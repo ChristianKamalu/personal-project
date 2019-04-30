@@ -39,7 +39,7 @@ class Main extends Component {
                         <Link to='/Shrubs' style={{textDecoration: 'none', color: 'white'}}>
                             <h1 style={{fontSize: '4rem'}}>SHRUBS</h1>
                         </Link>
-                        <h3>The DIY Textbook Exchange</h3>
+                        <h3>#1 way to buy and sell textbooks</h3>
                     </div>
                     <div className='header-picture'></div>
                     {this.props.user.loggedIn ?

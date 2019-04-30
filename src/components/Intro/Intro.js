@@ -23,14 +23,14 @@ export default function Intro() {
                     <div className="directions-container">
                         <div className='circle'><i className="fas fa-folder-plus" style={{fontSize: '5rem', color:' rgb(43, 135, 221)'}}></i></div>
                         <h3 style={{textAlign: 'center'}}>Create a Listing</h3>
-                        <p className='instruction'><br/>Have any textbooks laying around?</p>
+                        <p className='instruction'><br/>Easily post your own listing for others to see</p>
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
                     <div className="directions-container">
                         <div className='circle'><i className="fas fa-search" style={{fontSize: '5rem', color:' rgb(43, 135, 221)'}}></i></div>
                         <h3 style={{textAlign: 'center'}}>Browse Listings</h3>
-                        <p className='instruction'><br/>Looking for a specific book?</p>
+                        <p className='instruction'><br/>Search for a book by it's title or ISBN</p>
                     </div>
                 </Carousel.Item>
             </Carousel>

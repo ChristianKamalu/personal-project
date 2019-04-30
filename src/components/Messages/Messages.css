@@ -1,16 +1,3 @@
-
-.message-thread-container {
-    height: 30rem;
-    width: 20rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 3rem;
-    border-radius: .5rem;
-    box-shadow: 5px 10px 15px;
-}
-
 .threads-container {
     width: 19rem;
     max-height: 15rem;
@@ -22,6 +9,7 @@
 }
 
 .thread-container:hover {
+    cursor: pointer;
     background-color: rgba(182, 182, 182, 0.267);
     box-shadow: 2px 0px 
 }
@@ -30,30 +18,6 @@
     width: calc(100% - 2rem);
     padding: .5rem;
     border-bottom: 1px solid rgba(128, 128, 128, 0.301)
-}
-
-.message-box {
-    height: 30rem;
-    width: 20rem;
-    position: relative;
-    margin: 3rem;
-    border-radius: .5rem;
-    box-shadow: 5px 10px 15px;
-    display: flex;
-    justify-content: center;
-}
-
-.listing-box {
-    height: 30rem;
-    width: 20rem;
-    position: relative;
-    margin: 3rem;
-    border-radius: .5rem;
-    box-shadow: 5px 10px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .listing-image {
