@@ -46,7 +46,7 @@ app.post('/login', authCtrl.login)
 app.post('/register', authCtrl.register)
 app.get('/Listings', authCtrl.getListings)
 app.get('/user-info', authCtrl.getUserInfo)
-app.get(REACT_APP_LOGOUT, (req, res) => {
+app.get('/Logout', (req, res) => {
     req.session.destroy();
     res.redirect(REDIRECT)
 })
