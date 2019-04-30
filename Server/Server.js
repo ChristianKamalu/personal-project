@@ -7,7 +7,7 @@ const messageCtrl = require('./messageCtrl');
 const listingCtrl = require('./listingCtrl');
 // const noedemailer = require('nodemailer');
 
-const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, REDIRECT} = process.env;
+const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, REDIRECT, REACT_APP_LOGOUT} = process.env;
 
 const app = express();
 var http = require('http').createServer(app);
@@ -46,7 +46,7 @@ app.post('/login', authCtrl.login)
 app.post('/register', authCtrl.register)
 app.get('/Listings', authCtrl.getListings)
 app.get('/user-info', authCtrl.getUserInfo)
-app.get('/logout', (req, res) => {
+app.get(REACT_APP_LOGOUT, (req, res) => {
     req.session.destroy();
     res.redirect(REDIRECT)
 })
