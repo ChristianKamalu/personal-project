@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getData} from '../../Ducks/userReducer';
-import {Route, Switch, Link} from 'react-router-dom';
+import {Redirect, Route, Switch, Link} from 'react-router-dom';
 import './Main.css';
 import Intro from '../Intro/Intro';
 import Listings from '../Listings/Listings';
@@ -90,6 +90,9 @@ class Main extends Component {
                     </div>
                 </header>
                 <Switch>
+                    <Route exact path='/' render={() => {
+                        return <Redirect to='/Shrubs'/>
+                    }}/>>
                     <Route exact path='/Shrubs' component={Intro}/>
                     <Route path='/Shrubs/Listings' component={Listings}/>
                     <Route path='/Shrubs/Messages' component={Messages}/>
