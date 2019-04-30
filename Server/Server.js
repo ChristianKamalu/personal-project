@@ -5,9 +5,10 @@ const session = require('express-session');
 const authCtrl = require('./authCtrl');
 const messageCtrl = require('./messageCtrl');
 const listingCtrl = require('./listingCtrl');
+const path = require('path');
 // const noedemailer = require('nodemailer');
 
-const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
+const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, REDIRECT} = process.env;
 
 const app = express();
 var http = require('http').createServer(app);
@@ -47,7 +48,7 @@ app.get('/Listings', authCtrl.getListings)
 app.get('/user-info', authCtrl.getUserInfo)
 app.get('/logout', (req, res) => {
     req.session.destroy();
-    res.redirect('http://localhost:3000/#/Shrubs')
+    res.redirect(REDIRECT)
 })
 
 app.post('/SendText', messageCtrl.sendText)
@@ -58,6 +59,10 @@ app.get('/getThread/:id', messageCtrl.getThread)
 app.post('/Create-Listing', listingCtrl.createListing)
 app.put('/Edit-Listing', listingCtrl.editListing)
 app.delete('/Delete-Listing/:listing_id', listingCtrl.deleteListing)
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 // app.post('/send-email', function(req, res) => {
 

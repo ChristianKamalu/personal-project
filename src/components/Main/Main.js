@@ -9,6 +9,7 @@ import Messages from '../Messages/Messages';
 import MyListings from '../MyListings/MyListings';
 import Account from '../Account/Account';
 import About from '../About/About';
+require('dotenv').config();
 
 class Main extends Component {
     constructor(props) {
@@ -54,7 +55,7 @@ class Main extends Component {
                         {this.props.user.loggedIn ?
                         <div style={{zIndex: '1'}}>
                             <div>
-                            <a href='http://localhost:4000/Logout'>
+                            <a href={process.env.REACT_APP_LOGOUT}>
                             <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>Log Out</div>
                             </a>
                             <Link to='/Shrubs/MyListings'>
