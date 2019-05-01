@@ -21,7 +21,12 @@ const ListingContainer = styled.div`
     align-items: center;
     box-shadow: 5px 10px 15px;
     overflow: hidden;
-    transition: .3s
+    transition: .3s;
+
+    :hover {
+        cursor: pointer;
+        transform: scale(1.1)
+    }
 `
 
 class Listings extends Component {
