@@ -83,7 +83,7 @@
 
 .listing-display-container {
     width: 40%;
-    height: 100vh;
+    height: inherit;
     background-color: white;
     position: fixed;
     bottom: 0;
@@ -91,8 +91,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
-    margin-top: 2rem;
+    padding: 20rem 2rem 2rem 2rem;
+    overflow: scroll;
 }
 
 .empty-space {
