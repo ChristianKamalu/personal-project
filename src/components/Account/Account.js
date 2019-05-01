@@ -14,13 +14,13 @@ class Account extends Component {
 
     render() {
         return (
-            <div style={{display: 'flex', width: '100vw'}}>
+            <div style={{display: 'flex', width: '100vw', minHeight: 'calc(100vh - 25rem'}}>
                 <div className='left-side-container'>
                     <div>
-                        <Link to='/Shrubs/MyListings'>
+                        <Link to='/MyListings'>
                         <p className='user-links'>My Listings</p>
                         </Link>
-                        <Link to='/Shrubs/Account'>
+                        <Link to='/Account'>
                         <p className='user-links'>My Account</p>
                         </Link>
                     </div>

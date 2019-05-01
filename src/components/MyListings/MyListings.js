@@ -135,10 +135,10 @@ class MyListings extends Component {
             <div style={{display: 'flex', width: '100vw', minHeight: 'calc(100vh - 25rem'}}>
                 <div className='left-container'>
                     <div>
-                        <Link to='/Shrubs/MyListings'>
+                        <Link to='/MyListings'>
                         <p className='user-links'>My Listings</p>
                         </Link>
-                        <Link to='/Shrubs/Account'>
+                        <Link to='/Account'>
                         <p className='user-links'>My Account</p>
                         </Link>
                     </div>
@@ -161,7 +161,7 @@ class MyListings extends Component {
             </div>
         ) : (
             <div style={{minHeight: 'calc(100vh - 25rem'}}>
-                Please <Link className='login-link' to='/Shrubs/Login'>log in</Link> to view your listings
+                Please <Link className='login-link' to='/Login'>log in</Link> to view your listings
             </div>
         )
     }

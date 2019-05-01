@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getData} from '../../Ducks/userReducer';
-import {Redirect, Route, Switch, Link} from 'react-router-dom';
+import {Route, Switch, Link} from 'react-router-dom';
 import './Main.css';
 import Intro from '../Intro/Intro';
 import Listings from '../Listings/Listings';
@@ -37,7 +37,7 @@ class Main extends Component {
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <header>
                     <div className='header-title'>
-                        <Link to='/Shrubs' style={{textDecoration: 'none', color: 'white'}}>
+                        <Link to='/' style={{textDecoration: 'none', color: 'white'}}>
                             <h1 style={{fontSize: '4rem'}}>SHRUBS</h1>
                         </Link>
                         <h3>#1 way to buy and sell textbooks</h3>
@@ -58,51 +58,48 @@ class Main extends Component {
                             <a href={process.env.REACT_APP_LOGOUT}>
                             <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>Log Out</div>
                             </a>
-                            <Link to='/Shrubs/MyListings'>
+                            <Link to='/MyListings'>
                             <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>My Listings</div>
                             </Link>
-                            <Link to='/Shrubs/Account'>
+                            <Link to='/Account'>
                             <div className='user-option-button' onClick={this.toggleOptions}>My Account</div>
                             </Link>
                             </div>
                         </div>
                         :
                         <div style={{zIndex: '1'}}>
-                            <Link to='/Shrubs/Login'>
+                            <Link to='/Login'>
                             <div className='user-option-button'>Log In</div>
                             </Link>
                         </div>
                         }
                     </div>
                     <div className='links'>
-                        <Link style={{textDecoration: 'none'}} to='/Shrubs'>
+                        <Link style={{textDecoration: 'none'}} to=''>
                             <li>HOME</li>
                         </Link>
-                        <Link style={{textDecoration: 'none'}} to='/Shrubs/Listings'>
+                        <Link style={{textDecoration: 'none'}} to='/Listings'>
                             <li>Listings</li>
                         </Link>
-                        <Link style={{textDecoration: 'none'}} to='/Shrubs/Messages'>
+                        <Link style={{textDecoration: 'none'}} to='/Messages'>
                             <li>Messages</li>
                         </Link>
-                        <Link style={{textDecoration: 'none'}} to='/Shrubs/About'>
+                        <Link style={{textDecoration: 'none'}} to='/About'>
                             <li>About</li>
                         </Link>
                     </div>
                 </header>
                 <Switch>
-                    <Route exact path='/' render={() => {
-                        return <Redirect to='/Shrubs'/>
-                    }}/>>
-                    <Route exact path='/Shrubs' component={Intro}/>
-                    <Route path='/Shrubs/Listings' component={Listings}/>
-                    <Route path='/Shrubs/Messages' component={Messages}/>
-                    <Route path='/Shrubs/About' component={About}/>
-                    <Route path='/Shrubs/MyListings' component={MyListings}/>
-                    <Route path='/Shrubs/Account' component={Account}/>
+                    <Route exact path='/' component={Intro}/>
+                    <Route path='/Listings' component={Listings}/>
+                    <Route path='/Messages' component={Messages}/>
+                    <Route path='/About' component={About}/>
+                    <Route path='/MyListings' component={MyListings}/>
+                    <Route path='/Account' component={Account}/>
                 </Switch>
                 <hr></hr>
                 <footer>
-
+                    <p style={{margin: 0}}>All rights reserved © 2019 Christian Kamalu</p>
                 </footer>
             </div>
         )

@@ -27,7 +27,10 @@ header {
 footer {
     width: 100vw;
     height: 5rem;
-    background-color: grey
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 hr {

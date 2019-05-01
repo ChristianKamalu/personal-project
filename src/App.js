@@ -9,8 +9,8 @@ class App extends Component {
     return (
       <HashRouter>
         <Switch>
-          <Route path='/Shrubs/Login' component={Login}/>
-          <Route path='/Shrubs' component={Main}/>
+          <Route path='/Login' component={Login}/>
+          <Route path='/' component={Main}/>
         </Switch>
       </HashRouter>
     );

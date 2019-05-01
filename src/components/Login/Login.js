@@ -28,7 +28,7 @@ class Login extends Component {
     login = async () => {
         const {email, password} = this.state;
         const res = await Axios.post('/login', { email, password })
-        if (res.data.loggedIn) this.props.history.push('/Shrubs')
+        if (res.data.loggedIn) this.props.history.push('/')
         else this.setState({error: true})
     }
 
@@ -37,7 +37,7 @@ class Login extends Component {
         const res = await Axios.post('/register', { firstName, lastName, email, password })
         if (res.data.loggedIn) {
 
-            this.props.history.push('/Shrubs')
+            this.props.history.push('/')
         }
         else this.setState({error: true})
     }
