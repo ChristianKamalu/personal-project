@@ -132,7 +132,7 @@ class MyListings extends Component {
         })
         
         return this.props.user.loggedIn ? (
-            <div style={{display: 'flex', width: '100vw', height: '100%'}}>
+            <div style={{display: 'flex', width: '100vw', minHeight: 'calc(100vh - 25rem'}}>
                 <div className='left-container'>
                     <div>
                         <Link to='/Shrubs/MyListings'>
@@ -160,8 +160,8 @@ class MyListings extends Component {
                 />
             </div>
         ) : (
-            <div>
-                Please <Link className='login-link' to='/Shrubs/Login'>log in</Link> to view messages
+            <div style={{minHeight: 'calc(100vh - 25rem'}}>
+                Please <Link className='login-link' to='/Shrubs/Login'>log in</Link> to view your listings
             </div>
         )
     }

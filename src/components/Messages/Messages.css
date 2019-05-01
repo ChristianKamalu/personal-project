@@ -96,7 +96,7 @@
 
 .all-container {
     display: flex;
-    height: inherit;
+    min-height: calc(100vh - 25rem);
 }
 
 .buyer-threads-dropdown {

@@ -123,7 +123,7 @@ class Listings extends Component {
                     buy={this.buy}/>
             </div>
         ) : (
-            <div>
+            <div style={{minHeight: 'calc(100vh - 25rem'}}>
                 Please <Link className='login-link' to='/Shrubs/Login'>log in</Link> to view listings
             </div>
         )
