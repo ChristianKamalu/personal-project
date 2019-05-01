@@ -3,7 +3,7 @@ h1 {
 }
 
 .main-container {
-    height: calc(100vh - 25rem);
+    min-height: calc(100vh - 25rem);
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
