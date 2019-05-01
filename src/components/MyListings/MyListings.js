@@ -50,7 +50,6 @@ class MyListings extends Component {
     }
 
     toggleEdit = () => {
-        console.log('target', this.state.targetListing)
         this.setState({
             editListing: !this.state.editListing,
             title: this.state.targetListing.title,
