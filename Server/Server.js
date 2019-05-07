@@ -10,37 +10,45 @@ const listingCtrl = require('./listingCtrl');
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, REDIRECT, REACT_APP_LOGOUT} = process.env;
 
 const app = express();
+
+// USED FOR SOCKET.IO
 var http = require('http').createServer(app);
 var io = require('socket.io')(http)
 
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
-    console.log('db is setup');
-    http.listen(SERVER_PORT, () => console.log('listening on port', SERVER_PORT))
+    // the "http" prefix is for socket.io
+    http.listen(SERVER_PORT)
 })
 
 app.use(express.json());
 app.use(session({
     secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    }
 }))
 
+// run "npm run build" then run nodemon and you won't have to
+// use "npm start" in order to run your code. It just won't update live.
 app.use( express.static( `${__dirname}/../build` ));
 
+
+//This is socket.io
+/* ********************************** */
 io.on('connection', socket => {
-    console.log('User connected')
 
     socket.on('send text', (text) => {
-        console.log('text: ', text);
         io.sockets.emit('send text', text)
     })
     
     socket.on('disconnect', () => {
-        console.log('User disconnected')
     })
 })
+/* *********************************** */
 
 app.post('/login', authCtrl.login)
 app.post('/register', authCtrl.register)

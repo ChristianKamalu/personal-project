@@ -19,11 +19,11 @@ class Main extends Component {
         }
     }
     componentDidMount() {
-        this.props.getData()
+        this.props.getData();
     }
 
     getFirstLetter = () => {
-        return this.props.user.userData.firstName.toUpperCase().split('')[0]
+        return this.props.user.userData.firstName.toUpperCase().split('')[0];
     }
 
     toggleOptions = () => {

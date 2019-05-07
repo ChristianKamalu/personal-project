@@ -140,7 +140,6 @@ class Messages extends Component {
             })
         })
     }
-
     
     render() {
         const ROOT_CSS = css({
