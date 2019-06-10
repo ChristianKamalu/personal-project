@@ -77,7 +77,7 @@ class Messages extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            endpoint: "https://christiankamalu.com",
+            endpoint: "https://165.22.149.91",
             color: 'white',
             messages: [{
                 message_id: ''
