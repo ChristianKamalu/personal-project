@@ -118,6 +118,8 @@ class Messages extends Component {
         const socket = socketIOClient(this.state.endpoint);
 
         socket.emit('send text', {text: this.state.text, user_id: this.props.user.userData.id});
+
+        this.setState({text: ''})
     }
 
     setColor = (color) => {
@@ -136,7 +138,7 @@ class Messages extends Component {
         socket.on('send text', (text) => {
             this.setState({
                 messages: [...this.state.messages, text],
-                text: ''
+                // text: ''
             })
         })
     }
