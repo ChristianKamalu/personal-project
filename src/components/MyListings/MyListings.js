@@ -11,13 +11,13 @@ class MyListings extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            displayListing: false,
-            createListing: false,
+            displayListing: true,
+            createListing: true,
             editListing: false,
             targetListing: '',
             title: '',
             ISBN: '',
-            condition: '',
+            condition: 'Acceptable',
             price: '',
             image: '',
             textbook_id: ''

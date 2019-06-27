@@ -2,7 +2,6 @@ import React from 'react';
 // import {Link} from 'react-router-dom';
 
 export default function Listing (props) {
-    console.log('email', props.targetListing.email)
     return (
         <div className='listing-display-component' style={props.displayListing ? {display: 'flex', justifyContent:'center'} : {display: 'none'}}>
             <div className='empty-space' onClick={props.toggleDisplay}/>

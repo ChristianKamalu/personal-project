@@ -48,13 +48,11 @@ module.exports = {
     },
     getListings: async (req, res) => {
         const db = req.app.get('db')
-        if (req.session.user) {
-            let listings = await db.get_listings()
-            res.status(200).send({
-                listings: listings,
-                loggedIn: true
-            })
-        } else res.status(401).send('Please login')
+        let listings = await db.get_listings()
+        res.status(200).send({
+            listings: listings,
+            loggedIn: true
+        })
     },
     getUserInfo: async (req, res) => {
         if (req.session.user) {

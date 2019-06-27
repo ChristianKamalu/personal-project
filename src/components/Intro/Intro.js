@@ -30,53 +30,10 @@ export default function Intro() {
                     <div className="directions-container">
                         <div className='circle'><i className="fas fa-search" style={{fontSize: '5rem', color:' rgb(43, 135, 221)'}}></i></div>
                         <h3 style={{textAlign: 'center'}}>Browse Listings</h3>
-                        <p className='instruction'><br/>Search for a book by it's title or ISBN</p>
+                        <p className='instruction'><br/>Search for a book by title or ISBN</p>
                     </div>
                 </Carousel.Item>
             </Carousel>
-            {/* <h2 style={{color: 'orangered'}}>SELL</h2>
-            <div className='all-directions-container'>
-                    <img
-                    className="d-block w-100"
-                    src="holder.js/800x400?text=First slide&bg=373940"
-                    alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                <div className="d-block w-100">
-                    <div className='circle'></div>
-                    <p>lorem alkdfj ;alskdfj a;lskd ;alskd f;laskf ;aslkf ;lkd fl s fs flks jforeu ghruigj dnfvndfjksvn kljndf jknfkjns</p>
-                </div>
-                <div className="d-block w-100">
-                    <div className='circle'></div>
-                    <p>lorem alkdfj ;alskdfj a;lskd ;alskd f;laskf ;aslkf ;lkd fl s fs flks jforeu ghruigj dnfvndfjksvn kljndf jknfkjns</p>
-                </div>
-                <div className="d-block w-100">
-                    <div className='circle'></div>
-                    <p>lorem alkdfj ;alskdfj a;lskd ;alskd f;laskf ;aslkf ;lkd fl s fs flks jforeu ghruigj dnfvndfjksvn kljndf jknfkjns</p>
-                </div>
-            </div>
-            <h2 style={{color: 'green'}}>BUY</h2>
-            <div className='all-directions-container'>
-                <div className="d-block w-100">
-                    <div className='circle'></div>
-                    <p>lorem alkdfj ;alskdfj a;lskd ;alskd f;laskf ;aslkf ;lkd fl s fs flks jforeu ghruigj dnfvndfjksvn kljndf jknfkjns</p>
-                </div>
-                <div className="d-block w-100">
-                    <div className='circle'></div>
-                    <p>lorem alkdfj ;alskdfj a;lskd ;alskd f;laskf ;aslkf ;lkd fl s fs flks jforeu ghruigj dnfvndfjksvn kljndf jknfkjns</p>
-                </div>
-                <div className="d-block w-100">
-                    <div className='circle'></div>
-                    <p>lorem alkdfj ;alskdfj a;lskd ;alskd f;laskf ;aslkf ;lkd fl s fs flks jforeu ghruigj dnfvndfjksvn kljndf jknfkjns</p>
-                </div>
-                <div className="d-block w-100">
-                    <div className='circle'></div>
-                    <p>lorem alkdfj ;alskdfj a;lskd ;alskd f;laskf ;aslkf ;lkd fl s fs flks jforeu ghruigj dnfvndfjksvn kljndf jknfkjns</p>
-                </div>
-            </div> */}
         </div>
     )
 }

@@ -53,24 +53,24 @@ class Login extends Component {
                     <p style={this.state.error ? {display: 'flex'} : {display: 'none'}} className='error p'>Email already in use</p>
                     <input className='login-input' placeholder='email' onChange={e => this.setState({email: e.target.value})} value={this.state.email} type='text'/>
                     <p className='p'>Email</p>
-                    <input className='login-input' placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password} type='text'/>
+                    <input className='login-input' placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password} type='password'/>
                     <p className='p'>Password</p>
                     <button className='login-button' onClick={this.register}>Register</button>
                     <p className='p'>Already registered?</p>
-                    <h4 className='login' onClick={() => this.setState({register: false, error: false})}>Back to login</h4>
+                    <h4 className='login' onClick={() => this.setState({register: false, error: false, password: '', email: ''})}>Back to login</h4>
                 </div>
             </div>
         ) : this.state.error ? (
             <div className='entire-container'>
                 <div className='login-container'>
                     <p className='error p'>Incorrect email and/or password</p>
-                    <input className='login-input' placeholder='email' onChange={e => this.setState({email: e.target.value})} value={this.state.email} type='text'/>
+                    <input className='login-input' type='text' placeholder='email' onChange={e => this.setState({email: e.target.value})} value={this.state.email}/>
                     <p className='p'>Email</p>
-                    <input className='login-input' placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password} type='text'/>                        
+                    <input className='login-input' type="password" placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password}/>                        
                     <p className='p'>Password</p>
                     <button className='login-button' onClick={this.login}>Login</button>
                     <p className='p'>Not yet registered?</p>
-                    <h4 className='register' onClick={() => this.setState({register: true, error: false})}>register here</h4>
+                    <h4 className='register' onClick={() => this.setState({register: true, error: false, password: '', email: ''})}>register here</h4>
                 </div>
             </div>
         ) : (
@@ -78,11 +78,11 @@ class Login extends Component {
                 <div className='login-container'>
                     <input className='login-input' placeholder='email' onChange={e => this.setState({email: e.target.value})} value={this.state.email} type='text'/>
                     <p className='p'>Email</p>
-                    <input className='login-input' placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password} type='text'/>                        
+                    <input className='login-input' placeholder='password' onChange={e => this.setState({password: e.target.value})} value={this.state.password} type='password'/>                        
                     <p className='p'>Password</p>
                     <button className='login-button' onClick={this.login}>Login</button>
                     <p className='p'>Not yet registered?</p>
-                    <h4 className='register' onClick={() => this.setState({register: true})}>register here</h4>
+                    <h4 className='register' onClick={() => this.setState({register: true, password: '', email: ''})}>register here</h4>
                 </div>
             </div>
         )

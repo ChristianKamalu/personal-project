@@ -13,7 +13,12 @@ export default function MyListing (props) {
                     <p>Image: <br/><input className='edit-create-input' placeholder='image' name='image' onChange={e => props.setValue(e.target)}/></p>
                     <p style={{marginTop: '1rem'}}>Title: <br/><input className='edit-create-input' placeholder='title' name='title' value={props.state.title} onChange={e => props.setValue(e.target)}/></p>
                     <p>ISBN: <br/><input className='edit-create-input' placeholder='ISBN' type='number' name='ISBN' value={props.state.ISBN} onChange={e => props.setValue(e.target)}/></p>
-                    <p>Condition: <br/><input className='edit-create-input' placeholder='condition' name='condition' value={props.state.condition} onChange={e => props.setValue(e.target)}/></p>
+                    <p>Condition: <br/>
+                    <select className='edit-create-input' value={props.state.condition} onChange={e => props.setValue(e.target)}>
+                        <option value='Poor'>Poor</option>
+                        <option value='Acceptable'>Acceptable</option>
+                        <option value='Excellent'>Excellent</option>
+                    </select></p>
                     <p>Price: <br/>$<input className='price-input' placeholder='price' type='number' name='price' value={props.state.price} onChange={e => props.setValue(e.target)}/></p>
                     <div>
                         <button style={{width: '100%'}} onClick={props.createListing}>Create Listing</button>
