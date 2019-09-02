@@ -10,8 +10,13 @@ export default function Listing (props) {
                 <img src={props.targetListing.image} alt={props.targetListing.title} width='40%'/>
                 <div style={{margin: '1rem'}}>
                     <h4 style={{marginTop: '1rem'}}>{props.targetListing.title}</h4>
-                    <p>ISBN: <br/>{props.targetListing.isbn}</p>
-                    <p>Condition: <br/>{props.targetListing.condition}</p>
+                    <br/>
+                    <p>ISBN:{props.targetListing.isbn}</p>
+                    <br/>
+                    <p>Condition:{props.targetListing.condition}</p>
+                    <br/>
+                    <p className='description'>Description: {props.targetListing.description}</p>
+                    <br/>
                     <p>Price: <br/>${props.targetListing.price}</p>
                     <p>Interested? <button onClick={props.buy}>Contact Seller</button></p>
                 </div>

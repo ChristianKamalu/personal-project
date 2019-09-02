@@ -38,7 +38,7 @@ class Main extends Component {
                 <header>
                     <div className='header-title'>
                         <Link to='/' style={{textDecoration: 'none', color: 'white'}}>
-                            <h1 style={{fontSize: '4rem'}}>SHRUBS</h1>
+                            <h1 style={{fontSize: '4rem'}}>Shrubs</h1>
                         </Link>
                         <h3>#1 way to buy and sell textbooks</h3>
                     </div>
@@ -55,21 +55,21 @@ class Main extends Component {
                         {this.props.user.loggedIn ?
                         <div style={{zIndex: '1'}}>
                             <div>
-                            <a href={process.env.REACT_APP_LOGOUT}>
-                            <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>Log Out</div>
-                            </a>
-                            <Link to='/MyListings'>
-                            <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>My Listings</div>
-                            </Link>
-                            <Link to='/Account'>
-                            <div className='user-option-button' onClick={this.toggleOptions}>My Account</div>
-                            </Link>
+                                <a href={process.env.REACT_APP_LOGOUT}>
+                                    <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>Log Out</div>
+                                </a>
+                                <Link to='/MyListings'>
+                                    <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>My Listings</div>
+                                </Link>
+                                <Link to='/Account'>
+                                    <div className='user-option-button' onClick={this.toggleOptions}>My Account</div>
+                                </Link>
                             </div>
                         </div>
                         :
                         <div style={{zIndex: '1'}}>
                             <Link to='/Login'>
-                            <div className='user-option-button'>Log In</div>
+                                <div className='user-option-button'>Log In</div>
                             </Link>
                         </div>
                         }

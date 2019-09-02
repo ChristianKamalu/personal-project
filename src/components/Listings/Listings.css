@@ -7,6 +7,7 @@
 
 .user-options-container {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     height: 6rem;
     width: 50vw;
     border-radius: 3rem;
@@ -15,6 +16,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center
+}
+
+.description {
+    word-wrap: normal;
+    /* text-overflow: ellipsis; */
 }
 
 .search {
@@ -92,8 +98,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* padding: 20rem 2rem 2rem 2rem; */
+    /* padding: 2rem 2rem 1rem 2rem; */
     overflow: scroll;
+}
+
+.listingPic {
+    width: 100%;
+    height: 50%;
+    background-size: cover;
+    background-position: center;
 }
 
 .empty-space {

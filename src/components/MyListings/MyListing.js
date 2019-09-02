@@ -11,15 +11,48 @@ export default function MyListing (props) {
                 <div className='edit-section-container'>
                     <i className="fas fa-times exit" onClick={props.toggleDisplay}></i>
                     <p>Image: <br/><input className='edit-create-input' placeholder='image' name='image' onChange={e => props.setValue(e.target)}/></p>
-                    <p style={{marginTop: '1rem'}}>Title: <br/><input className='edit-create-input' placeholder='title' name='title' value={props.state.title} onChange={e => props.setValue(e.target)}/></p>
+                    <p style={{marginTop: '1rem'}}>Title: <br/><textarea className='edit-create-input' placeholder='title' name='title' value={props.state.title} onChange={e => props.setValue(e.target)}/></p>
+                    <br/>
                     <p>ISBN: <br/><input className='edit-create-input' placeholder='ISBN' type='number' name='ISBN' value={props.state.ISBN} onChange={e => props.setValue(e.target)}/></p>
-                    <p>Condition: <br/>
-                    <select className='edit-create-input' value={props.state.condition} onChange={e => props.setValue(e.target)}>
-                        <option value='Poor'>Poor</option>
-                        <option value='Acceptable'>Acceptable</option>
-                        <option value='Excellent'>Excellent</option>
-                    </select></p>
-                    <p>Price: <br/>$<input className='price-input' placeholder='price' type='number' name='price' value={props.state.price} onChange={e => props.setValue(e.target)}/></p>
+                    <br/>
+                    <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
+                        <p>Department:
+                            <br/>
+                            <select name='department' onChange={e => props.setValue(e.target)}>
+                                <option value='Agriculture and Life Sciences'>Agriculture and Life Sciences</option>
+                                <option value='Business'>Business</option>
+                                <option value='Design'>Design</option>
+                                <option value='Engineering'>Engineering</option>
+                                <option value='English'>English</option>
+                                <option value='Graduate'>Graduate</option>
+                                <option value='Human Sciences'>Human Sciences</option>
+                                <option value='Language Arts'>Language Arts</option>
+                                <option value='Liberal Arts and Sciences'>Liberal Arts and Sciences</option>
+                                <option value='Mathematics'>Mathematics</option>
+                                <option value='Medicine'>Medicine</option>
+                                <option value='Other'>Other</option>
+                            </select>    
+                        </p>
+                        <p>Condition: 
+                            <br/>
+                            <select name='condition' onChange={e => props.setValue(e.target)}>
+                                <option value='Poor'>Poor</option>
+                                <option value='Acceptable'>Acceptable</option>
+                                <option value='Excellent'>Excellent</option>
+                            </select>
+                        </p>
+                    </div>
+                    <br/>
+                    <p>Description:
+                        <br/>
+                        <textarea className='edit-create-input' placeholder='description' name='description' value={props.state.description} onChange={e => props.setValue(e.target)}/>
+                    </p>
+                    <br/>
+                    <p>Price: 
+                        <br/>$
+                        <input className='price-input' placeholder='price' type='number' name='price' value={props.state.price} onChange={e => props.setValue(e.target)}/>
+                    </p>
+                    <br/>
                     <div>
                         <button style={{width: '100%'}} onClick={props.createListing}>Create Listing</button>
                     </div>
@@ -36,7 +69,36 @@ export default function MyListing (props) {
                     <p>Image: <br/><input className='edit-create-input' placeholder='image' name='image' value={props.state.image} onChange={e => props.setValue(e.target)}/></p>
                     <p style={{marginTop: '1rem'}}>Title: <br/><input className='edit-create-input' placeholder='title' name='title' value={props.state.title} onChange={e => props.setValue(e.target)}/></p>
                     <p>ISBN: <br/><input className='edit-create-input' placeholder='ISBN' name='ISBN' type='number' value={props.state.ISBN} onChange={e => props.setValue(e.target)}/></p>
-                    <p>Condition: <br/><input className='edit-create-input' placeholder='condition' name='condition' value={props.state.condition} onChange={e => props.setValue(e.target)}/></p>
+                    <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
+                        <p>Department:
+                            <br/>
+                            <select value={props.state.department} name='department' onChange={e => props.setValue(e.target)}>
+                                <option value='Agriculture and Life Sciences'>Agriculture and Life Sciences</option>
+                                <option value='Business'>Business</option>
+                                <option value='Design'>Design</option>
+                                <option value='Engineering'>Engineering</option>
+                                <option value='English'>English</option>
+                                <option value='Graduate'>Graduate</option>
+                                <option value='Human Sciences'>Human Sciences</option>
+                                <option value='Language Arts'>Language Arts</option>
+                                <option value='Liberal Arts and Sciences'>Liberal Arts and Sciences</option>
+                                <option value='Mathematics'>Mathematics</option>
+                                <option value='Medicine'>Medicine</option>
+                            </select>    
+                        </p>
+                        <p>Condition: 
+                            <br/>
+                            <select value={props.state.condition} name='condition' onChange={e => props.setValue(e.target)}>
+                                <option value='Poor'>Poor</option>
+                                <option value='Acceptable'>Acceptable</option>
+                                <option value='Excellent'>Excellent</option>
+                            </select>
+                        </p>
+                    </div>
+                    <p>Description:
+                        <br/>
+                        <textarea className='edit-create-input' placeholder='description' name='description' value={props.state.description} onChange={e => props.setValue(e.target)}/>
+                    </p>    
                     <p>Price: <br/>$<input  className='price-input' placeholder='price' name='price' type='number' value={props.state.price} onChange={e => props.setValue(e.target)}/></p>
                 </div>
                 <div>

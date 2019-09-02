@@ -6,18 +6,24 @@ import {getListings} from '../../Ducks/listingsReducer';
 import MyListing from './MyListing';
 import Axios from 'axios';
 import swal from 'sweetalert';
+import MyInput from './Proposal';
+import ReactDOM from 'react-dom';
+
+
 
 class MyListings extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            displayListing: true,
-            createListing: true,
+            displayListing: false,
+            createListing: false,
             editListing: false,
             targetListing: '',
             title: '',
             ISBN: '',
-            condition: 'Acceptable',
+            department: '',
+            condition: '',
+            description: '',
             price: '',
             image: '',
             textbook_id: ''
@@ -38,7 +44,9 @@ class MyListings extends Component {
             ISBN: '',
             image: '',
             price: '',
-            condition: ''
+            condition: '',
+            department: '',
+            description: ''
         })
     }
 
@@ -57,7 +65,9 @@ class MyListings extends Component {
             image: this.state.targetListing.image,
             condition: this.state.targetListing.condition,
             price: this.state.targetListing.price,
-            textbook_id: this.state.targetListing.textbook_id
+            textbook_id: this.state.targetListing.textbook_id,
+            department: this.state.targetListing.department,
+            description: this.state.targetListing.description
         })
     }
 
@@ -68,23 +78,37 @@ class MyListings extends Component {
         })
     }
 
-    createListing = async () => {
-        if(this.state.title && this.state.image && this.state.condition && this.state.price && this.state.ISBN) {
-        await Axios.post('/Create-Listing', {state: this.state, user_id: this.props.user.userData.id})
-            .then(() => {
-                this.props.getListings()
-                this.setState({
-                    displayListing: false,
-                    editListing: false
+    
+
+    createListing = () => {
+        let wrapper = document.createElement('div');
+        ReactDOM.render(<MyInput price={this.state.price}/>, wrapper);
+        let el = wrapper.firstChild;
+        if(this.state.title && this.state.image && this.state.condition && this.state.price && this.state.ISBN && this.state.description) {
+            swal({
+                content: el,
+                buttons: ["Cancel", "Accept and Create"],
+                // dangerMode: true
                 })
-                swal('Completed', 'New Listing Created', 'success')
-            })
+                .then(async(willDelete) => {
+                    if(willDelete) {
+                        await Axios.post('/Create-Listing', {state: this.state, user_id: this.props.user.userData.id})
+                            .then(() => {
+                                this.props.getListings()
+                                this.setState({
+                                    displayListing: false,
+                                    editListing: false
+                                })
+                                swal('Completed', 'New Listing Created', 'success')
+                            })
+                    }
+                })
         } else {swal('?', 'Please fill out all of the boxes.', 'error')}
     }
 
     editListing = async () => {
-        if(this.state.title && this.state.image && this.state.condition && this.state.price && this.state.ISBN) {
-            await Axios.put('/Edit-Listing', {state: this.state})
+        if(this.state.title && this.state.image && this.state.condition && this.state.price && this.state.ISBN && this.state.description) {
+            await Axios.put('/Edit-Listing', {state: this.state, user_id: this.props.user.userData.id})
             .then(() => {
                 this.props.getListings()
                 this.setState({
@@ -104,15 +128,15 @@ class MyListings extends Component {
             .then(async (willDelete) => {
                 if(willDelete) {
                     await Axios.delete(`/Delete-Listing/${this.state.targetListing.listing_id}`)
-                        .then(async () => {
-                            this.props.getListings();
-                            await this.setState({
-                                displayListing: false
-                            })
-                            swal('Cool Beans', 'Listing deleted.', 'success')
+                    .then(async () => {
+                        this.props.getListings();
+                        await this.setState({
+                            displayListing: false
                         })
-                }
-            })
+                        swal('Cool Beans', 'Listing deleted.', 'success')
+                })
+            }
+        })
     }
 
     render() {
@@ -121,7 +145,7 @@ class MyListings extends Component {
             if (listing.user_id === this.props.user.userData.id) {
                 return (
                     <div className='listing-container' key={i} onClick={() => this.toggleDisplay(listing)}>
-                        <img src={listing.image} alt={listing.titlel} height='150px'/>
+                        <div className='listingPic' style={{backgroundImage: `url(${listing.image})`}}/>
                         <div>
                             <h4 style={{fontSize: '1rem', fontWeight: '700', marginTop: '0'}}>{listing.title}</h4>
                             <p>ISBN: <br/>{listing.isbn}</p>

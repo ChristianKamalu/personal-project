@@ -7,6 +7,7 @@ import Listing from './Listing';
 import Axios from 'axios';
 import swal from 'sweetalert';
 import styled from 'styled-components';
+import ListingCard from './ListingCard';
 
 const ListingContainer = styled.div`
     border-radius: 1rem;
@@ -17,7 +18,7 @@ const ListingContainer = styled.div`
     background-color: rgba(255, 255, 255, 0.555);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
     box-shadow: 5px 10px 15px;
     overflow: hidden;
@@ -61,13 +62,23 @@ class Listings extends Component {
     render() {
         const listings = this.props.listings.listings.map((listing, i) => {
             return (
-                <ListingContainer key={i} onClick={() => this.toggleDisplay(listing)}>
-                    <img src={listing.image} alt={listing.titlel} height='150px'/>
-                    <div style={{width: '90%'}}>
+                <>
+                {/* <ListingContainer key={i} onClick={() => this.toggleDisplay(listing)}>
+                    <div className='listingPic' style={{backgroundImage: `url(${listing.image})`}}/>
+                    <br/>
+                    <div style={{width: '90%', maxHeight: '40%'}}>
                         <h4 style={{fontSize: '1rem', fontWeight: '700', marginTop: '0'}}>{listing.title}</h4>
                         <p>ISBN: {listing.isbn}</p>
+                        <p>Condition: {listing.condition}</p>
+                        <p className='description'>Description: {listing.description}</p>
                     </div>
-                </ListingContainer>
+                </ListingContainer> */}
+                <ListingCard
+                    toggleDisplay={this.toggleDisplay}
+                    listing={listing} 
+                    key={i}
+                />
+                </>
             )
         })
 
@@ -77,13 +88,22 @@ class Listings extends Component {
 
             if (listing.title.toLowerCase().includes(this.state.searchResults.toLowerCase()) || listing.isbn === this.state.searchResults) {
                 return (
-                    <div className='listing-container' key={i} onClick={() => this.toggleDisplay(listing)}>
-                        <img src={listing.image} alt={listing.title} height='150px'/>
+                    <>
+                    {/* <ListingContainer key={i} onClick={() => this.toggleDisplay(listing)}>
+                        <div className='listingPic' style={{backgroundImage: `url(${listing.image})`}}/>
+                        <br/>
                         <div style={{width: '90%'}}>
                             <h4 style={{fontSize: '1rem', fontWeight: '700', marginTop: '0'}}>{listing.title}</h4>
                             <p>ISBN: {listing.isbn}</p>
+                            <p>Condition: {listing.condition}</p>
+                            <p className='description'>Description: {listing.description}</p>
                         </div>
-                    </div>
+                    </ListingContainer> */}
+                    <ListingCard 
+                        listing={listing}
+                        key={i}
+                    />
+                    </>
                 )
             }
         })

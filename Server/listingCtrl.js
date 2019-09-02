@@ -1,22 +1,24 @@
 module.exports = {
     createListing: async (req, res) => {
         const db = req.app.get('db');
-        const {title, ISBN, condition, price, image} = req.body.state;
+        const {title, ISBN, condition, price, image, description, department} = req.body.state;
         const {user_id} = req.body;
-        if (!title || !ISBN || !condition || !price || !user_id || !image || !req.session.user) {
+        if (!user_id || !title || !ISBN || !condition || !description || !department || !price || !user_id || !image || !req.session.user) {
             req.status(422).send('incomplete fields')
         }
-        let textbook_id = await db.create_book([title, ISBN, condition, price, image])
-        let listings = await db.create_listing([user_id, textbook_id[0].textbook_id])
+        let listings = await db.create_listing([user_id, title, ISBN, department, condition, description, price, image])
         res.status(200).send(listings)
     },
     editListing: async (req, res) => {
         const db = req.app.get('db');
-        const {textbook_id, title, ISBN, condition, price, image} = req.body.state;
-        if (!title || !ISBN || !condition || !price || !textbook_id || !image || !req.session.user) {
-            req.status(422).send('incomplete fields')
+        const {title, ISBN, condition, price, image, description, department} = req.body.state;
+        const {listing_id} = req.body.state.targetListing;
+        const {user_id} = req.body;
+        if (!user_id || !title || !ISBN || !condition || !description || !department || !price || !listing_id || !image || !req.session.user) {
+            res.status(422).send('incomplete fields')
         }
-        let listings = await db.edit_listing([textbook_id, title, ISBN, condition, price, image])
+        console.log(req.body.state)
+        let listings = await db.edit_listing([listing_id, title, ISBN, department, condition, description, price, image, user_id])
         res.status(200).send(listings)
     },
     deleteListing: async (req, res) => {

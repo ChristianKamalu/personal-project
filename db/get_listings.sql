@@ -1,4 +1,4 @@
-select u.email, listing_id, t.textbook_id, l.user_id, bought, ISBN, title, condition, price, image
+select u.email, listing_id, l.user_id, l.bought, l.isbn, title, l.condition, l.price, l.image, l.department, l.description
 from Textbook_Listing l
-join Textbook t on l.textbook_id=t.textbook_id
 join Users u on u.user_id=l.user_id
+where l.bought = false;
