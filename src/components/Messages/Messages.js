@@ -239,6 +239,7 @@ class Messages extends Component {
                                 <p>ISBN: <br/>{this.state.listing.isbn}</p>
                                 <p>Condition: <br/>{this.state.listing.condition}</p>
                                 <p>Price: <br/>${this.state.listing.price}</p>
+                                <button style={{}}>Buy</button>
                             </div>
                         </ListingContainer>
                     </div>

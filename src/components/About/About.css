@@ -47,7 +47,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 858px) {
     .our-goal-container {
         height: auto;
         flex-direction: column;

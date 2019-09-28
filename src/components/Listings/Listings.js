@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getListings} from '../../Ducks/listingsReducer';
-// import {Link} from 'react-router-dom';
+import {Link, Switch, Route} from 'react-router-dom';
 import './Listings.css';
 import Listing from './Listing';
 import Axios from 'axios';
@@ -55,12 +55,13 @@ class Listings extends Component {
         if(!this.props.user.loggedIn) return swal('Please log in to contact the seller')
         if(this.state.targetListing.user_id !== this.props.user.userData.id) {
             Axios.post('/CreateMessage', {listing: this.state.targetListing, buyer_id: this.props.user.userData.id})
-                .then(() => swal("You're a wizard!!", 'You may now communicate with the seller in your messages tab.', 'success'))
+                .then(() => swal("Listing tracked", 'You may now communicate with the seller in your messages tab.', 'success'))
         } else {swal('Error!', 'This is your own listing', 'error')}
     }
 
     render() {
         const listings = this.props.listings.listings.map((listing, i) => {
+            // this.props.history.push(`-${listing.listing_id}`)
             return (
                 <>
                 {/* <ListingContainer key={i} onClick={() => this.toggleDisplay(listing)}>
@@ -100,6 +101,7 @@ class Listings extends Component {
                         </div>
                     </ListingContainer> */}
                     <ListingCard 
+                        toggleDisplay={this.toggleDisplay}
                         listing={listing}
                         key={i}
                     />

@@ -9,6 +9,7 @@ import Messages from '../Messages/Messages';
 import MyListings from '../MyListings/MyListings';
 import Account from '../Account/Account';
 import About from '../About/About';
+import Listing from '../Listings/Listing';
 require('dotenv').config();
 
 class Main extends Component {
@@ -38,9 +39,9 @@ class Main extends Component {
                 <header>
                     <div className='header-title'>
                         <Link to='/' style={{textDecoration: 'none', color: 'white'}}>
-                            <h1 style={{fontSize: '4rem'}}>Shrubs</h1>
+                            <h1 style={{fontSize: '4rem'}}>Bookie</h1>
                         </Link>
-                        <h3>#1 way to buy and sell textbooks</h3>
+                        <h3>Giving Power to the Student</h3>
                     </div>
                     <div className='header-picture'></div>
                     {this.props.user.loggedIn ?
@@ -58,6 +59,9 @@ class Main extends Component {
                                 <a href={process.env.REACT_APP_LOGOUT}>
                                     <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>Log Out</div>
                                 </a>
+                                <Link style={{textDecoration: 'none'}} to='/Messages'>
+                                    <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>Messages</div>
+                                </Link>
                                 <Link to='/MyListings'>
                                     <div className='user-option-button' style={{borderBottom: '1px solid grey'}} onClick={this.toggleOptions}>My Listings</div>
                                 </Link>
@@ -81,9 +85,9 @@ class Main extends Component {
                         <Link style={{textDecoration: 'none'}} to='/Listings'>
                             <li>Listings</li>
                         </Link>
-                        <Link style={{textDecoration: 'none'}} to='/Messages'>
-                            <li>Messages</li>
-                        </Link>
+                        {/* <Link style={{textDecoration: 'none'}} to='/Messages'>
+                            <li>Cart</li>
+                        </Link> */}
                         <Link style={{textDecoration: 'none'}} to='/About'>
                             <li>About</li>
                         </Link>
