@@ -21,6 +21,7 @@ header {
     height: 20rem;
     display: flex;
     justify-content: center;
+    align-items: center;
     position: relative;
 }
 
@@ -47,10 +48,10 @@ a {
 .header-picture {
     height: 20rem;
     width: 100%;
-    background-image: url(https://c.cheggcdn.com/assets/site/images/img-hero-books-sell.jpg);
+    background-image: url(./field.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position-y: ;
+    background-position: center -300px;
     filter: brightness(60%);
     position: absolute;
     z-index: -1;

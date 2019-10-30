@@ -10,6 +10,8 @@ import MyListings from '../MyListings/MyListings';
 import Account from '../Account/Account';
 import About from '../About/About';
 import Listing from '../Listings/Listing';
+import logo from './logo.png';
+
 require('dotenv').config();
 
 class Main extends Component {
@@ -39,9 +41,10 @@ class Main extends Component {
                 <header>
                     <div className='header-title'>
                         <Link to='/' style={{textDecoration: 'none', color: 'white'}}>
-                            <h1 style={{fontSize: '4rem'}}>Bookie</h1>
+                            {/* <h1 style={{fontSize: '4rem'}}>The Student Section</h1> */}
+                            <img src={logo} alt="the student section" style={{width: 300}}/>
                         </Link>
-                        <h3>Giving Power to the Student</h3>
+                        {/* <h3>Giving Power to the Student</h3> */}
                     </div>
                     <div className='header-picture'></div>
                     {this.props.user.loggedIn ?
